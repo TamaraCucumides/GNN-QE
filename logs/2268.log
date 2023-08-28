@@ -1,0 +1,30 @@
+/mnt/ialabnas/homes/tacucumides
+scylla
+Thu Aug 24 21:25:31 -04 2023
+Start training
+/mnt/ialabnas/homes/tacucumides
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+21:25:35   Config file: config/fb15k237.yaml
+21:25:35   {'dataset': {'class': 'FB15k237LogicalQuery', 'path': '~/kg-datasets/'},
+ 'engine': {'batch_size': 48, 'gpus': [0]},
+ 'metric': 'mrr',
+ 'optimizer': {'class': 'Adam', 'lr': 0.005},
+ 'output_dir': '~/scratch/experiments/',
+ 'task': {'adversarial_temperature': 0.2,
+          'class': 'LogicalQuery',
+          'criterion': 'bce',
+          'model': {'class': 'GNN-QE',
+                    'dropout_ratio': 0.25,
+                    'logic': 'product',
+                    'model': {'aggregate_func': 'pna',
+                              'class': 'NBFNet',
+                              'dependent': True,
+                              'hidden_dims': [32, 32, 32, 32],
+                              'input_dim': 32,
+                              'layer_norm': True,
+                              'message_func': 'distmult',
+                              'short_cut': True}},
+          'sample_weight': False},
+ 'train': {'batch_per_epoch': 1000, 'num_epoch': 10}}
+21:25:35   Downloading http://snap.stanford.edu/betae/KG_data.zip to /home/tacucumides/kg-datasets/KG_data.zip
+slurmstepd-scylla: error: *** JOB 2268 ON scylla CANCELLED AT 2023-08-24T21:39:11 ***

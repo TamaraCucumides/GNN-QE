@@ -1,0 +1,21 @@
+/mnt/ialabnas/homes/tacucumides
+scylla
+Thu Aug 24 22:01:33 -04 2023
+Start training
+/mnt/ialabnas/homes/tacucumides
+Traceback (most recent call last):
+  File "/mnt/ialabnas/homes/tacucumides/GNN-QE/script/run.py", line 12, in <module>
+    from gnnqe import dataset, gnn, model, task, util
+  File "/mnt/ialabnas/homes/tacucumides/GNN-QE/gnnqe/dataset.py", line 11, in <module>
+    from torchdrug.layers import functional
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torchdrug/layers/__init__.py", line 11, in <module>
+    from .geometry import GraphConstruction, SpatialLineGraph
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torchdrug/layers/geometry/__init__.py", line 2, in <module>
+    from .function import BondEdge, KNNEdge, SpatialEdge, SequentialEdge, AlphaCarbonNode, \
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torchdrug/layers/geometry/function.py", line 3, in <module>
+    from torch_cluster import knn_graph, radius_graph
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torch_cluster/__init__.py", line 43, in <module>
+    from .nearest import nearest  # noqa
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torch_cluster/nearest.py", line 4, in <module>
+    import scipy.cluster
+ModuleNotFoundError: No module named 'scipy'

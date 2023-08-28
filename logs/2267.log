@@ -1,0 +1,12 @@
+/mnt/ialabnas/homes/tacucumides
+scylla
+Thu Aug 24 21:23:37 -04 2023
+Start training
+/mnt/ialabnas/homes/tacucumides
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+Traceback (most recent call last):
+  File "/mnt/ialabnas/homes/tacucumides/GNN-QE/script/run.py", line 12, in <module>
+    from gnnqe import dataset, gnn, model, task, util
+  File "/mnt/ialabnas/homes/tacucumides/GNN-QE/gnnqe/util.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'

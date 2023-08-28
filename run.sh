@@ -15,5 +15,6 @@ echo $(pwd)
 cd /home/tacucumides
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
-cd /home/tacucumides/GNN-QE/script
-python run.py
+cd /home/tacucumides/GNN-QE
+python script/run.py -c config/fb15k237.yaml --gpus [0]
+ 
