@@ -1,0 +1,28 @@
+/mnt/ialabnas/homes/tacucumides
+scylla
+Tue Aug 29 23:33:07 -04 2023
+Start training
+/mnt/ialabnas/homes/tacucumides
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+Traceback (most recent call last):
+  File "/mnt/ialabnas/homes/tacucumides/GNN-QE/script/run.py", line 8, in <module>
+    from torchdrug import core
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torchdrug/__init__.py", line 1, in <module>
+    from . import patch
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torchdrug/patch.py", line 13, in <module>
+    from torchdrug import core, data
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torchdrug/core/__init__.py", line 2, in <module>
+    from .engine import Engine
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torchdrug/core/engine.py", line 11, in <module>
+    from torchdrug import data, core, utils
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torchdrug/data/__init__.py", line 1, in <module>
+    from .dictionary import PerfectHash, Dictionary
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torchdrug/data/dictionary.py", line 4, in <module>
+    from torch_scatter import scatter_max
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torch_scatter/__init__.py", line 16, in <module>
+    torch.ops.load_library(spec.origin)
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torch/_ops.py", line 255, in load_library
+    ctypes.CDLL(path)
+  File "/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/ctypes/__init__.py", line 382, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: /mnt/ialabnas/homes/tacucumides/miniconda3/envs/gnn-qe/lib/python3.9/site-packages/torch_scatter/_version_cuda.so: undefined symbol: _ZN5torch3jit17parseSchemaOrNameERKSs
