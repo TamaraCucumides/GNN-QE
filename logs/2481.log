@@ -1,0 +1,973 @@
+/mnt/ialabnas/homes/tacucumides
+scylla
+Wed Aug 30 00:32:35 -04 2023
+Start training
+/mnt/ialabnas/homes/tacucumides
+00:32:39   Config file: config/fb15k237.yaml
+00:32:39   {'dataset': {'class': 'FB15k237LogicalQuery', 'path': '~/kg-datasets/'},
+ 'engine': {'batch_size': 24, 'gpus': [0]},
+ 'metric': 'mrr',
+ 'optimizer': {'class': 'Adam', 'lr': 0.005},
+ 'output_dir': '~/scratch/experiments/',
+ 'task': {'adversarial_temperature': 0.2,
+          'class': 'LogicalQuery',
+          'criterion': 'bce',
+          'model': {'class': 'GNN-QE',
+                    'dropout_ratio': 0.25,
+                    'logic': 'product',
+                    'model': {'aggregate_func': 'pna',
+                              'class': 'NBFNet',
+                              'dependent': True,
+                              'hidden_dims': [32, 32, 32, 32],
+                              'input_dim': 32,
+                              'layer_norm': True,
+                              'message_func': 'distmult',
+                              'short_cut': True}},
+          'sample_weight': False},
+ 'train': {'batch_per_epoch': 1000, 'num_epoch': 10}}
+Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:   0%|          | 0/544230 [00:00<?, ?it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:  15%|█▌        | 84322/544230 [00:00<00:00, 843138.39it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:  32%|███▏      | 174386/544230 [00:00<00:00, 876944.79it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:  49%|████▊     | 265081/544230 [00:00<00:00, 890637.02it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:  65%|██████▌   | 355844/544230 [00:00<00:00, 897330.63it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:  82%|████████▏ | 446537/544230 [00:00<00:00, 900784.70it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt:  99%|█████████▉| 537464/544230 [00:00<00:00, 903662.61it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/train.txt: 100%|██████████| 544230/544230 [00:00<00:00, 895629.59it/s]
+Loading /home/tacucumides/kg-datasets/FB15k-237-betae/valid.txt:   0%|          | 0/35052 [00:00<?, ?it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/valid.txt: 100%|██████████| 35052/35052 [00:00<00:00, 839119.34it/s]
+Loading /home/tacucumides/kg-datasets/FB15k-237-betae/test.txt:   0%|          | 0/40876 [00:00<?, ?it/s]Loading /home/tacucumides/kg-datasets/FB15k-237-betae/test.txt: 100%|██████████| 40876/40876 [00:00<00:00, 846042.93it/s]
+Loading train-*.pkl:   0%|          | 0/3 [00:00<?, ?it/s]Loading train-*.pkl:  33%|███▎      | 1/3 [00:00<00:01,  1.92it/s]Loading train-*.pkl: 100%|██████████| 3/3 [00:19<00:00,  7.23s/it]
+Processing train queries:   0%|          | 0/823285 [00:00<?, ?it/s][ALoading train-*.pkl: 100%|██████████| 3/3 [00:19<00:00,  6.56s/it]
+
+Processing train queries:   0%|          | 1/823285 [00:00<28:33:24,  8.01it/s][A
+Processing train queries:   1%|          | 4875/823285 [00:00<00:31, 26008.53it/s][A
+Processing train queries:   1%|          | 10103/823285 [00:00<00:21, 37369.54it/s][A
+Processing train queries:   2%|▏         | 15271/823285 [00:00<00:18, 42833.01it/s][A
+Processing train queries:   3%|▎         | 20616/823285 [00:00<00:17, 46580.07it/s][A
+Processing train queries:   3%|▎         | 25968/823285 [00:00<00:16, 48903.74it/s][A
+Processing train queries:   4%|▍         | 31178/823285 [00:00<00:15, 49936.71it/s][A
+Processing train queries:   4%|▍         | 36572/823285 [00:00<00:15, 51202.44it/s][A
+Processing train queries:   5%|▌         | 41988/823285 [00:00<00:14, 52122.00it/s][A
+Processing train queries:   6%|▌         | 47224/823285 [00:01<00:14, 51962.04it/s][A
+Processing train queries:   6%|▋         | 52671/823285 [00:01<00:14, 52725.22it/s][A
+Processing train queries:   7%|▋         | 57956/823285 [00:01<00:14, 51212.85it/s][A
+Processing train queries:   8%|▊         | 63212/823285 [00:01<00:14, 51609.16it/s][A
+Processing train queries:   8%|▊         | 68548/823285 [00:01<00:14, 52127.90it/s][A
+Processing train queries:   9%|▉         | 73909/823285 [00:01<00:14, 52566.62it/s][A
+Processing train queries:  10%|▉         | 79274/823285 [00:01<00:14, 52888.17it/s][A
+Processing train queries:  10%|█         | 84670/823285 [00:01<00:13, 53208.46it/s][A
+Processing train queries:  11%|█         | 89995/823285 [00:01<00:13, 52796.85it/s][A
+Processing train queries:  12%|█▏        | 95486/823285 [00:01<00:13, 53424.70it/s][A
+Processing train queries:  12%|█▏        | 100906/823285 [00:02<00:13, 53655.05it/s][A
+Processing train queries:  13%|█▎        | 106357/823285 [00:02<00:13, 53909.28it/s][A
+Processing train queries:  14%|█▎        | 111843/823285 [00:02<00:13, 54193.40it/s][A
+Processing train queries:  14%|█▍        | 117271/823285 [00:02<00:13, 54219.20it/s][A
+Processing train queries:  15%|█▍        | 122743/823285 [00:02<00:12, 54368.22it/s][A
+Processing train queries:  16%|█▌        | 128203/823285 [00:02<00:12, 54436.77it/s][A
+Processing train queries:  16%|█▌        | 133663/823285 [00:02<00:12, 54485.69it/s][A
+Processing train queries:  17%|█▋        | 139117/823285 [00:02<00:12, 54500.66it/s][A
+Processing train queries:  18%|█▊        | 144568/823285 [00:02<00:12, 54472.09it/s][A
+Processing train queries:  18%|█▊        | 150016/823285 [00:03<00:17, 39286.28it/s][A
+Processing train queries:  19%|█▉        | 155086/823285 [00:03<00:15, 41978.10it/s][A
+Processing train queries:  19%|█▉        | 160360/823285 [00:03<00:14, 44691.15it/s][A
+Processing train queries:  20%|██        | 165593/823285 [00:03<00:14, 46712.95it/s][A
+Processing train queries:  21%|██        | 170901/823285 [00:03<00:13, 48459.01it/s][A
+Processing train queries:  21%|██▏       | 175976/823285 [00:03<00:13, 48668.41it/s][A
+Processing train queries:  22%|██▏       | 181277/823285 [00:03<00:12, 49906.13it/s][A
+Processing train queries:  23%|██▎       | 186649/823285 [00:03<00:12, 51009.62it/s][A
+Processing train queries:  23%|██▎       | 192036/823285 [00:03<00:12, 51844.13it/s][A
+Processing train queries:  24%|██▍       | 197438/823285 [00:03<00:11, 52482.77it/s][A
+Processing train queries:  25%|██▍       | 202835/823285 [00:04<00:11, 52922.20it/s][A
+Processing train queries:  25%|██▌       | 208244/823285 [00:04<00:11, 53266.88it/s][A
+Processing train queries:  26%|██▌       | 213635/823285 [00:04<00:11, 53457.76it/s][A
+Processing train queries:  27%|██▋       | 219021/823285 [00:04<00:11, 53576.13it/s][A
+Processing train queries:  27%|██▋       | 224391/823285 [00:04<00:11, 53452.58it/s][A
+Processing train queries:  28%|██▊       | 229745/823285 [00:04<00:11, 52821.00it/s][A
+Processing train queries:  29%|██▊       | 235035/823285 [00:04<00:11, 52678.42it/s][A
+Processing train queries:  29%|██▉       | 240327/823285 [00:04<00:11, 52748.59it/s][A
+Processing train queries:  30%|██▉       | 245691/823285 [00:04<00:10, 53012.69it/s][A
+Processing train queries:  30%|███       | 250995/823285 [00:04<00:10, 52848.84it/s][A
+Processing train queries:  31%|███       | 256319/823285 [00:05<00:10, 52963.63it/s][A
+Processing train queries:  32%|███▏      | 261617/823285 [00:05<00:10, 52772.39it/s][A
+Processing train queries:  32%|███▏      | 266916/823285 [00:05<00:10, 52835.38it/s][A
+Processing train queries:  33%|███▎      | 272219/823285 [00:05<00:10, 52892.42it/s][A
+Processing train queries:  34%|███▎      | 277509/823285 [00:05<00:10, 52810.44it/s][A
+Processing train queries:  34%|███▍      | 282808/823285 [00:05<00:10, 52863.78it/s][A
+Processing train queries:  35%|███▍      | 288128/823285 [00:05<00:10, 52962.56it/s][A
+Processing train queries:  36%|███▌      | 293425/823285 [00:05<00:10, 52737.80it/s][A
+Processing train queries:  36%|███▋      | 298724/823285 [00:05<00:09, 52810.99it/s][A
+Processing train queries:  37%|███▋      | 304006/823285 [00:06<00:13, 37414.44it/s][A
+Processing train queries:  38%|███▊      | 309167/823285 [00:06<00:12, 40711.51it/s][A
+Processing train queries:  38%|███▊      | 314352/823285 [00:06<00:11, 43486.01it/s][A
+Processing train queries:  39%|███▉      | 319535/823285 [00:06<00:11, 45676.30it/s][A
+Processing train queries:  39%|███▉      | 324727/823285 [00:06<00:10, 47377.74it/s][A
+Processing train queries:  40%|████      | 329881/823285 [00:06<00:10, 48542.43it/s][A
+Processing train queries:  41%|████      | 335035/823285 [00:06<00:09, 49399.02it/s][A
+Processing train queries:  41%|████▏     | 340129/823285 [00:06<00:09, 49845.96it/s][A
+Processing train queries:  42%|████▏     | 345304/823285 [00:06<00:09, 50402.42it/s][A
+Processing train queries:  43%|████▎     | 350412/823285 [00:07<00:09, 48745.58it/s][A
+Processing train queries:  43%|████▎     | 355606/823285 [00:07<00:09, 49666.95it/s][A
+Processing train queries:  44%|████▍     | 360836/823285 [00:07<00:09, 50435.13it/s][A
+Processing train queries:  44%|████▍     | 365986/823285 [00:07<00:09, 50746.91it/s][A
+Processing train queries:  45%|████▌     | 371241/823285 [00:07<00:08, 51279.95it/s][A
+Processing train queries:  46%|████▌     | 376477/823285 [00:07<00:08, 51600.61it/s][A
+Processing train queries:  46%|████▋     | 381672/823285 [00:07<00:08, 51702.18it/s][A
+Processing train queries:  47%|████▋     | 386925/823285 [00:07<00:08, 51948.99it/s][A
+Processing train queries:  48%|████▊     | 392128/823285 [00:07<00:08, 51971.01it/s][A
+Processing train queries:  48%|████▊     | 397366/823285 [00:07<00:08, 52091.73it/s][A
+Processing train queries:  49%|████▉     | 402591/823285 [00:08<00:08, 52136.95it/s][A
+Processing train queries:  50%|████▉     | 407807/823285 [00:08<00:07, 52086.49it/s][A
+Processing train queries:  50%|█████     | 413018/823285 [00:08<00:07, 51598.21it/s][A
+Processing train queries:  51%|█████     | 418227/823285 [00:08<00:07, 51743.77it/s][A
+Processing train queries:  51%|█████▏    | 423459/823285 [00:08<00:07, 51913.01it/s][A
+Processing train queries:  52%|█████▏    | 428652/823285 [00:10<00:54, 7242.45it/s] [A
+Processing train queries:  53%|█████▎    | 433796/823285 [00:10<00:40, 9726.53it/s][A
+Processing train queries:  53%|█████▎    | 438809/823285 [00:10<00:30, 12729.37it/s][A
+Processing train queries:  54%|█████▍    | 443737/823285 [00:10<00:23, 16237.62it/s][A
+Processing train queries:  54%|█████▍    | 448669/823285 [00:11<00:18, 20226.60it/s][A
+Processing train queries:  55%|█████▌    | 453340/823285 [00:11<00:22, 16333.40it/s][A
+Processing train queries:  56%|█████▌    | 457279/823285 [00:11<00:19, 19202.81it/s][A
+Processing train queries:  56%|█████▌    | 461336/823285 [00:11<00:16, 22428.36it/s][A
+Processing train queries:  57%|█████▋    | 465274/823285 [00:11<00:14, 25435.48it/s][A
+Processing train queries:  57%|█████▋    | 469695/823285 [00:11<00:12, 29231.52it/s][A
+Processing train queries:  58%|█████▊    | 474179/823285 [00:11<00:10, 32727.97it/s][A
+Processing train queries:  58%|█████▊    | 478687/823285 [00:12<00:09, 35721.70it/s][A
+Processing train queries:  59%|█████▊    | 483214/823285 [00:12<00:08, 38178.24it/s][A
+Processing train queries:  59%|█████▉    | 487602/823285 [00:12<00:08, 39710.53it/s][A
+Processing train queries:  60%|█████▉    | 491958/823285 [00:12<00:08, 40762.52it/s][A
+Processing train queries:  60%|██████    | 496313/823285 [00:12<00:07, 41165.50it/s][A
+Processing train queries:  61%|██████    | 500626/823285 [00:12<00:07, 41293.77it/s][A
+Processing train queries:  61%|██████▏   | 504893/823285 [00:12<00:07, 41615.24it/s][A
+Processing train queries:  62%|██████▏   | 509152/823285 [00:12<00:07, 41881.40it/s][A
+Processing train queries:  62%|██████▏   | 513459/823285 [00:12<00:07, 42228.95it/s][A
+Processing train queries:  63%|██████▎   | 517827/823285 [00:12<00:07, 42655.48it/s][A
+Processing train queries:  63%|██████▎   | 522128/823285 [00:13<00:07, 42248.51it/s][A
+Processing train queries:  64%|██████▍   | 526706/823285 [00:13<00:06, 43289.13it/s][A
+Processing train queries:  65%|██████▍   | 531263/823285 [00:13<00:06, 43963.50it/s][A
+Processing train queries:  65%|██████▌   | 535836/823285 [00:13<00:06, 44486.65it/s][A
+Processing train queries:  66%|██████▌   | 540296/823285 [00:13<00:06, 44226.09it/s][A
+Processing train queries:  66%|██████▌   | 544727/823285 [00:13<00:06, 44154.68it/s][A
+Processing train queries:  67%|██████▋   | 549148/823285 [00:13<00:06, 44035.61it/s][A
+Processing train queries:  67%|██████▋   | 553556/823285 [00:13<00:06, 44019.28it/s][A
+Processing train queries:  68%|██████▊   | 557961/823285 [00:13<00:06, 43971.66it/s][A
+Processing train queries:  68%|██████▊   | 562360/823285 [00:13<00:05, 43957.56it/s][A
+Processing train queries:  69%|██████▉   | 566757/823285 [00:14<00:05, 43765.78it/s][A
+Processing train queries:  69%|██████▉   | 571135/823285 [00:14<00:05, 43748.01it/s][A
+Processing train queries:  70%|██████▉   | 575511/823285 [00:14<00:05, 43670.96it/s][A
+Processing train queries:  70%|███████   | 579879/823285 [00:14<00:05, 43640.73it/s][A
+Processing train queries:  71%|███████   | 584284/823285 [00:14<00:05, 43761.46it/s][A
+Processing train queries:  72%|███████▏  | 588661/823285 [00:14<00:05, 43070.52it/s][A
+Processing train queries:  72%|███████▏  | 593219/823285 [00:14<00:05, 43810.87it/s][A
+Processing train queries:  73%|███████▎  | 597755/823285 [00:14<00:05, 44269.73it/s][A
+Processing train queries:  73%|███████▎  | 602185/823285 [00:15<00:10, 21960.30it/s][A
+Processing train queries:  74%|███████▎  | 605905/823285 [00:15<00:08, 24616.77it/s][A
+Processing train queries:  74%|███████▍  | 609787/823285 [00:15<00:07, 27447.96it/s][A
+Processing train queries:  75%|███████▍  | 613690/823285 [00:15<00:06, 30015.49it/s][A
+Processing train queries:  75%|███████▌  | 617588/823285 [00:15<00:06, 32170.81it/s][A
+Processing train queries:  76%|███████▌  | 621584/823285 [00:15<00:05, 34161.07it/s][A
+Processing train queries:  76%|███████▌  | 625612/823285 [00:15<00:05, 35796.81it/s][A
+Processing train queries:  76%|███████▋  | 629681/823285 [00:15<00:05, 37149.45it/s][A
+Processing train queries:  77%|███████▋  | 633808/823285 [00:15<00:04, 38315.31it/s][A
+Processing train queries:  77%|███████▋  | 637912/823285 [00:16<00:04, 39098.49it/s][A
+Processing train queries:  78%|███████▊  | 641942/823285 [00:16<00:04, 39445.76it/s][A
+Processing train queries:  78%|███████▊  | 646063/823285 [00:16<00:04, 39963.14it/s][A
+Processing train queries:  79%|███████▉  | 650188/823285 [00:16<00:04, 40341.47it/s][A
+Processing train queries:  79%|███████▉  | 654319/823285 [00:16<00:04, 40627.65it/s][A
+Processing train queries:  80%|███████▉  | 658456/823285 [00:16<00:04, 40847.43it/s][A
+Processing train queries:  80%|████████  | 662563/823285 [00:16<00:04, 40157.33it/s][A
+Processing train queries:  81%|████████  | 666955/823285 [00:16<00:03, 41265.03it/s][A
+Processing train queries:  82%|████████▏ | 671244/823285 [00:16<00:03, 41746.48it/s][A
+Processing train queries:  82%|████████▏ | 675572/823285 [00:16<00:03, 42202.10it/s][A
+Processing train queries:  83%|████████▎ | 679861/823285 [00:17<00:03, 42404.95it/s][A
+Processing train queries:  83%|████████▎ | 684200/823285 [00:17<00:03, 42697.72it/s][A
+Processing train queries:  84%|████████▎ | 688474/823285 [00:17<00:03, 42679.33it/s][A
+Processing train queries:  84%|████████▍ | 692745/823285 [00:17<00:03, 42268.44it/s][A
+Processing train queries:  85%|████████▍ | 696975/823285 [00:17<00:03, 42086.61it/s][A
+Processing train queries:  85%|████████▌ | 701186/823285 [00:17<00:03, 38343.15it/s][A
+Processing train queries:  86%|████████▌ | 705557/823285 [00:17<00:02, 39838.68it/s][A
+Processing train queries:  86%|████████▌ | 709892/823285 [00:17<00:02, 40838.76it/s][A
+Processing train queries:  87%|████████▋ | 714283/823285 [00:17<00:02, 41724.43it/s][A
+Processing train queries:  87%|████████▋ | 718657/823285 [00:18<00:02, 42311.87it/s][A
+Processing train queries:  88%|████████▊ | 722914/823285 [00:18<00:02, 42342.63it/s][A
+Processing train queries:  88%|████████▊ | 727305/823285 [00:18<00:02, 42804.19it/s][A
+Processing train queries:  89%|████████▉ | 731679/823285 [00:18<00:02, 43081.78it/s][A
+Processing train queries:  89%|████████▉ | 736043/823285 [00:18<00:02, 43247.38it/s][A
+Processing train queries:  90%|████████▉ | 740375/823285 [00:18<00:01, 42963.88it/s][A
+Processing train queries:  90%|█████████ | 744677/823285 [00:18<00:01, 41578.64it/s][A
+Processing train queries:  91%|█████████ | 748848/823285 [00:18<00:01, 39881.76it/s][A
+Processing train queries:  91%|█████████▏| 752856/823285 [00:21<00:12, 5486.88it/s] [A
+Processing train queries:  92%|█████████▏| 757260/823285 [00:21<00:08, 7530.07it/s][A
+Processing train queries:  93%|█████████▎| 761747/823285 [00:21<00:06, 10158.08it/s][A
+Processing train queries:  93%|█████████▎| 765418/823285 [00:21<00:04, 12531.01it/s][A
+Processing train queries:  93%|█████████▎| 769476/823285 [00:21<00:03, 15756.87it/s][A
+Processing train queries:  94%|█████████▍| 773674/823285 [00:21<00:02, 19457.03it/s][A
+Processing train queries:  94%|█████████▍| 777887/823285 [00:21<00:01, 23260.69it/s][A
+Processing train queries:  95%|█████████▍| 781872/823285 [00:21<00:01, 25094.78it/s][A
+Processing train queries:  95%|█████████▌| 785679/823285 [00:21<00:01, 27785.75it/s][A
+Processing train queries:  96%|█████████▌| 789708/823285 [00:21<00:01, 30643.28it/s][A
+Processing train queries:  96%|█████████▋| 793539/823285 [00:22<00:00, 31856.84it/s][A
+Processing train queries:  97%|█████████▋| 797892/823285 [00:22<00:00, 34845.97it/s][A
+Processing train queries:  97%|█████████▋| 802207/823285 [00:22<00:00, 37069.79it/s][A
+Processing train queries:  98%|█████████▊| 806515/823285 [00:22<00:00, 38732.21it/s][A
+Processing train queries:  98%|█████████▊| 810636/823285 [00:22<00:00, 37600.20it/s][A
+Processing train queries:  99%|█████████▉| 814782/823285 [00:22<00:00, 38673.53it/s][A
+Processing train queries:  99%|█████████▉| 819072/823285 [00:22<00:00, 39873.98it/s][ALoading valid-*.pkl:   0%|          | 0/3 [00:00<?, ?it/s]Processing train queries: 100%|██████████| 823285/823285 [00:22<00:00, 36069.09it/s]
+Loading valid-*.pkl:  67%|██████▋   | 2/3 [00:02<00:01,  1.37s/it]Loading valid-*.pkl: 100%|██████████| 3/3 [00:03<00:00,  1.03s/it]
+Processing valid queries:   0%|          | 0/85094 [00:00<?, ?it/s][ALoading valid-*.pkl: 100%|██████████| 3/3 [00:03<00:00,  1.10s/it]
+
+Processing valid queries:   5%|▌         | 4500/85094 [00:00<00:01, 44997.90it/s][A
+Processing valid queries:  12%|█▏        | 9812/85094 [00:00<00:01, 49774.01it/s][A
+Processing valid queries:  17%|█▋        | 14790/85094 [00:00<00:01, 48983.39it/s][A
+Processing valid queries:  24%|██▎       | 20095/85094 [00:00<00:01, 50429.09it/s][A
+Processing valid queries:  30%|██▉       | 25314/85094 [00:00<00:01, 51056.02it/s][A
+Processing valid queries:  36%|███▌      | 30422/85094 [00:00<00:01, 50871.29it/s][A
+Processing valid queries:  42%|████▏     | 35511/85094 [00:00<00:01, 48780.23it/s][A
+Processing valid queries:  47%|████▋     | 40406/85094 [00:00<00:00, 46502.88it/s][A
+Processing valid queries:  53%|█████▎    | 45083/85094 [00:00<00:00, 46032.14it/s][A
+Processing valid queries:  58%|█████▊    | 49703/85094 [00:01<00:00, 45415.57it/s][A
+Processing valid queries:  64%|██████▍   | 54256/85094 [00:01<00:00, 45178.35it/s][A
+Processing valid queries:  69%|██████▉   | 58781/85094 [00:01<00:00, 44103.30it/s][A
+Processing valid queries:  74%|███████▍  | 63199/85094 [00:01<00:00, 43201.38it/s][A
+Processing valid queries:  79%|███████▉  | 67525/85094 [00:01<00:00, 43014.85it/s][A
+Processing valid queries:  84%|████████▍ | 71831/85094 [00:01<00:00, 43027.32it/s][A
+Processing valid queries:  89%|████████▉ | 76141/85094 [00:01<00:00, 43046.39it/s][A
+Processing valid queries:  95%|█████████▍| 80448/85094 [00:01<00:00, 42897.96it/s][A
+Processing valid queries: 100%|█████████▉| 84798/85094 [00:01<00:00, 43075.75it/s][ALoading test-*.pkl:   0%|          | 0/3 [00:00<?, ?it/s]Processing valid queries: 100%|██████████| 85094/85094 [00:01<00:00, 45452.82it/s]
+Loading test-*.pkl:  67%|██████▋   | 2/3 [00:04<00:02,  2.14s/it]Loading test-*.pkl: 100%|██████████| 3/3 [00:04<00:00,  1.39s/it]
+Processing test queries:   0%|          | 0/87804 [00:00<?, ?it/s][ALoading test-*.pkl: 100%|██████████| 3/3 [00:04<00:00,  1.54s/it]
+
+Processing test queries:   5%|▍         | 4259/87804 [00:00<00:01, 42583.75it/s][A
+Processing test queries:  11%|█         | 9535/87804 [00:00<00:01, 48567.94it/s][A
+Processing test queries:  17%|█▋        | 14933/87804 [00:00<00:01, 51037.05it/s][A
+Processing test queries:  23%|██▎       | 20321/87804 [00:00<00:01, 52157.80it/s][A
+Processing test queries:  29%|██▉       | 25537/87804 [00:00<00:01, 52084.91it/s][A
+Processing test queries:  35%|███▌      | 30746/87804 [00:00<00:01, 50025.92it/s][A
+Processing test queries:  41%|████      | 35764/87804 [00:00<00:01, 48943.95it/s][A
+Processing test queries:  46%|████▋     | 40671/87804 [00:00<00:00, 47222.84it/s][A
+Processing test queries:  52%|█████▏    | 45409/87804 [00:00<00:00, 45322.90it/s][A
+Processing test queries:  57%|█████▋    | 49960/87804 [00:01<00:00, 44810.11it/s][A
+Processing test queries:  62%|██████▏   | 54453/87804 [00:01<00:00, 44518.44it/s][A
+Processing test queries:  67%|██████▋   | 58912/87804 [00:01<00:00, 44234.14it/s][A
+Processing test queries:  72%|███████▏  | 63340/87804 [00:01<00:00, 43358.92it/s][A
+Processing test queries:  77%|███████▋  | 67755/87804 [00:01<00:00, 43586.30it/s][A
+Processing test queries:  82%|████████▏ | 72122/87804 [00:01<00:00, 43608.79it/s][A
+Processing test queries:  87%|████████▋ | 76486/87804 [00:01<00:00, 43603.28it/s][A
+Processing test queries:  92%|█████████▏| 80905/87804 [00:01<00:00, 43774.84it/s][A
+Processing test queries:  97%|█████████▋| 85284/87804 [00:01<00:00, 43114.80it/s][AProcessing test queries: 100%|██████████| 87804/87804 [00:01<00:00, 44753.25it/s]
+00:33:37   FB15k237LogicalQuery(
+  #entity: 14505
+  #relation: 474
+  #triplet: 620158
+  #query: 996183
+)
+00:33:37   #train: 823285, #valid: 85094, #test: 87804
+00:33:37   Preprocess training set
+00:33:38   {'batch_size': 24,
+ 'class': 'core.Engine',
+ 'gpus': [0],
+ 'gradient_interval': 1,
+ 'log_interval': 100,
+ 'logger': 'logging',
+ 'num_worker': 0,
+ 'optimizer': {'amsgrad': False,
+               'betas': (0.9, 0.999),
+               'capturable': False,
+               'class': 'optim.Adam',
+               'differentiable': False,
+               'eps': 1e-08,
+               'foreach': None,
+               'fused': False,
+               'lr': 0.005,
+               'maximize': False,
+               'weight_decay': 0},
+ 'scheduler': None,
+ 'task': {'adversarial_temperature': 0.2,
+          'class': 'task.LogicalQuery',
+          'criterion': 'bce',
+          'metric': ('mrr',),
+          'model': {'class': 'model.GNN-QE',
+                    'dropout_ratio': 0.25,
+                    'logic': 'product',
+                    'model': {'activation': 'relu',
+                              'aggregate_func': 'pna',
+                              'class': 'model.NBFNet',
+                              'concat_hidden': False,
+                              'dependent': True,
+                              'hidden_dims': [32, 32, 32, 32],
+                              'input_dim': 32,
+                              'layer_norm': True,
+                              'message_func': 'distmult',
+                              'num_relation': tensor(474),
+                              'short_cut': True},
+                    'num_mlp_layer': 2},
+          'sample_weight': False},
+ 'test_set': {'class': 'dataset.Subset',
+              'dataset': {'class': 'dataset.FB15k237LogicalQuery',
+                          'path': '~/kg-datasets/',
+                          'query_types': None,
+                          'union_type': 'DNF',
+                          'verbose': 1},
+              'indices': range(908379, 996183)},
+ 'train_set': {'class': 'dataset.Subset',
+               'dataset': {'class': 'dataset.FB15k237LogicalQuery',
+                           'path': '~/kg-datasets/',
+                           'query_types': None,
+                           'union_type': 'DNF',
+                           'verbose': 1},
+               'indices': range(0, 823285)},
+ 'valid_set': {'class': 'dataset.Subset',
+               'dataset': {'class': 'dataset.FB15k237LogicalQuery',
+                           'path': '~/kg-datasets/',
+                           'query_types': None,
+                           'union_type': 'DNF',
+                           'verbose': 1},
+               'indices': range(823285, 908379)}}
+00:33:38   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:33:38   Epoch 0 begin
+/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torch/nn/functional.py:1967: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/tacucumides/miniconda3/envs/gnn-qe/lib/python3.10/site-packages/torchdrug/data/graph.py:221: UserWarning: _maybe_num_relation() is used to determine the number of relations. This may underestimate the count if there are unseen relations.
+  warnings.warn("_maybe_num_relation() is used to determine the number of relations. "
+00:33:40   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:33:41   binary cross entropy: 0.797857
+00:35:27   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:35:28   binary cross entropy: 0.72593
+00:37:15   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:37:15   binary cross entropy: 0.580651
+00:39:02   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:39:02   binary cross entropy: 0.487364
+00:40:53   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:40:53   binary cross entropy: 0.509927
+00:42:45   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:42:45   binary cross entropy: 0.626692
+00:44:37   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:44:37   binary cross entropy: 0.489232
+00:46:28   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:46:29   binary cross entropy: 0.478027
+00:48:20   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:48:20   binary cross entropy: 0.402403
+00:50:12   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:50:12   binary cross entropy: 0.448305
+00:52:03   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:52:03   Epoch 0 end
+00:52:03   duration: 18.42 mins
+00:52:03   speed: 0.90 batch / sec
+00:52:03   ETA: 0.00 secs
+00:52:03   max GPU memory: 14100.3 MiB
+00:52:03   ------------------------------
+00:52:03   average binary cross entropy: 0.49913
+00:52:03   Save checkpoint to model_epoch_1.pth
+00:52:04   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+00:52:04   Evaluate on valid
+01:21:34   ------------------------------
+01:21:34   [1p] mrr: 0.258072
+01:21:34   [2i] mrr: 0.294374
+01:21:34   [2in] mrr: 0.0388406
+01:21:34   [2p] mrr: 0.0719794
+01:21:34   [2u-DNF] mrr: 0.0735629
+01:21:34   [3i] mrr: 0.476429
+01:21:34   [3in] mrr: 0.150397
+01:21:34   [3p] mrr: 0.0688715
+01:21:34   [EPFO] mrr: 0.182059
+01:21:34   [inp] mrr: 0.0728477
+01:21:34   [ip] mrr: 0.116972
+01:21:34   [negation] mrr: 0.0664784
+01:21:34   [pi] mrr: 0.209418
+01:21:34   [pin] mrr: 0.0407798
+01:21:34   [pni] mrr: 0.0295271
+01:21:34   [up-DNF] mrr: 0.0688502
+01:21:34   mrr: 0.14078
+01:21:34   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:21:34   Epoch 1 begin
+01:21:36   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:21:36   binary cross entropy: 0.465257
+01:23:27   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:23:27   binary cross entropy: 0.52162
+01:25:19   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:25:20   binary cross entropy: 0.521465
+01:27:12   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:27:12   binary cross entropy: 0.473226
+01:29:05   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:29:05   binary cross entropy: 0.364344
+01:30:57   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:30:57   binary cross entropy: 0.415099
+01:32:49   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:32:49   binary cross entropy: 0.433258
+01:34:41   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:34:41   binary cross entropy: 0.525654
+01:36:33   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:36:33   binary cross entropy: 0.392865
+01:38:25   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:38:25   binary cross entropy: 0.390482
+01:40:16   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:40:16   Epoch 1 end
+01:40:16   duration: 48.20 mins
+01:40:16   speed: 0.35 batch / sec
+01:40:16   ETA: 0.00 secs
+01:40:16   max GPU memory: 13868.3 MiB
+01:40:16   ------------------------------
+01:40:16   average binary cross entropy: 0.442351
+01:40:16   Save checkpoint to model_epoch_2.pth
+01:40:16   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01:40:16   Evaluate on valid
+02:10:02   ------------------------------
+02:10:02   [1p] mrr: 0.344174
+02:10:02   [2i] mrr: 0.318258
+02:10:02   [2in] mrr: 0.0497714
+02:10:02   [2p] mrr: 0.0829193
+02:10:02   [2u-DNF] mrr: 0.0888942
+02:10:02   [3i] mrr: 0.496832
+02:10:02   [3in] mrr: 0.159272
+02:10:02   [3p] mrr: 0.0789388
+02:10:02   [EPFO] mrr: 0.202895
+02:10:02   [inp] mrr: 0.077974
+02:10:02   [ip] mrr: 0.122151
+02:10:02   [negation] mrr: 0.0764328
+02:10:02   [pi] mrr: 0.213406
+02:10:02   [pin] mrr: 0.0530817
+02:10:02   [pni] mrr: 0.0420653
+02:10:02   [up-DNF] mrr: 0.0804778
+02:10:02   mrr: 0.15773
+02:10:02   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:10:02   Epoch 2 begin
+02:10:03   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:10:03   binary cross entropy: 0.345937
+02:11:55   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:11:55   binary cross entropy: 0.466946
+02:13:48   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:13:48   binary cross entropy: 0.450182
+02:15:39   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:15:39   binary cross entropy: 0.433746
+02:17:30   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:17:31   binary cross entropy: 0.427584
+02:19:23   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:19:23   binary cross entropy: 0.398121
+02:21:14   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:21:15   binary cross entropy: 0.379402
+02:23:06   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:23:06   binary cross entropy: 0.476233
+02:24:58   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:24:58   binary cross entropy: 0.583132
+02:26:49   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:26:50   binary cross entropy: 0.541375
+02:28:41   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:28:41   Epoch 2 end
+02:28:41   duration: 48.43 mins
+02:28:41   speed: 0.34 batch / sec
+02:28:41   ETA: 0.00 secs
+02:28:41   max GPU memory: 13907.8 MiB
+02:28:41   ------------------------------
+02:28:41   average binary cross entropy: 0.425707
+02:28:41   Save checkpoint to model_epoch_3.pth
+02:28:42   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:28:42   Evaluate on valid
+02:58:14   ------------------------------
+02:58:14   [1p] mrr: 0.344611
+02:58:14   [2i] mrr: 0.33215
+02:58:14   [2in] mrr: 0.0765451
+02:58:14   [2p] mrr: 0.0946243
+02:58:14   [2u-DNF] mrr: 0.0991241
+02:58:14   [3i] mrr: 0.511415
+02:58:14   [3in] mrr: 0.18454
+02:58:14   [3p] mrr: 0.081137
+02:58:14   [EPFO] mrr: 0.211644
+02:58:14   [inp] mrr: 0.0920302
+02:58:14   [ip] mrr: 0.131086
+02:58:14   [negation] mrr: 0.0969256
+02:58:14   [pi] mrr: 0.222453
+02:58:14   [pin] mrr: 0.067262
+02:58:14   [pni] mrr: 0.0642506
+02:58:14   [up-DNF] mrr: 0.0881981
+02:58:14   mrr: 0.170673
+02:58:14   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:58:14   Epoch 3 begin
+02:58:15   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02:58:15   binary cross entropy: 0.591666
+03:00:07   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:00:07   binary cross entropy: 0.395803
+03:01:59   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:01:59   binary cross entropy: 0.442025
+03:03:50   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:03:50   binary cross entropy: 0.662583
+03:05:41   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:05:41   binary cross entropy: 0.417599
+03:07:32   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:07:32   binary cross entropy: 0.383563
+03:09:24   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:09:24   binary cross entropy: 0.467477
+03:11:17   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:11:17   binary cross entropy: 0.485505
+03:13:08   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:13:08   binary cross entropy: 0.406872
+03:14:59   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:15:00   binary cross entropy: 0.4124
+03:16:50   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:16:50   Epoch 3 end
+03:16:50   duration: 48.14 mins
+03:16:50   speed: 0.35 batch / sec
+03:16:50   ETA: 0.00 secs
+03:16:50   max GPU memory: 13889.1 MiB
+03:16:50   ------------------------------
+03:16:50   average binary cross entropy: 0.417811
+03:16:50   Save checkpoint to model_epoch_4.pth
+03:16:50   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:16:50   Evaluate on valid
+03:46:19   ------------------------------
+03:46:19   [1p] mrr: 0.343918
+03:46:19   [2i] mrr: 0.335423
+03:46:19   [2in] mrr: 0.0600057
+03:46:19   [2p] mrr: 0.0922645
+03:46:19   [2u-DNF] mrr: 0.094346
+03:46:19   [3i] mrr: 0.518931
+03:46:19   [3in] mrr: 0.174172
+03:46:19   [3p] mrr: 0.0889311
+03:46:19   [EPFO] mrr: 0.214832
+03:46:19   [inp] mrr: 0.0873333
+03:46:19   [ip] mrr: 0.145522
+03:46:19   [negation] mrr: 0.0857212
+03:46:19   [pi] mrr: 0.228048
+03:46:19   [pin] mrr: 0.0569019
+03:46:19   [pni] mrr: 0.0501934
+03:46:19   [up-DNF] mrr: 0.0861015
+03:46:19   mrr: 0.168721
+03:46:19   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:46:19   Epoch 4 begin
+03:46:20   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:46:20   binary cross entropy: 0.472927
+03:48:11   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:48:11   binary cross entropy: 0.446434
+03:50:01   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:50:02   binary cross entropy: 0.616293
+03:51:52   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:51:52   binary cross entropy: 0.411013
+03:53:44   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:53:44   binary cross entropy: 0.396679
+03:55:35   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:55:35   binary cross entropy: 0.47536
+03:57:25   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:57:25   binary cross entropy: 0.558042
+03:59:16   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03:59:16   binary cross entropy: 0.33103
+04:01:07   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:01:07   binary cross entropy: 0.416445
+04:02:58   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:02:58   binary cross entropy: 0.27823
+04:04:49   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:04:49   Epoch 4 end
+04:04:49   duration: 47.99 mins
+04:04:49   speed: 0.35 batch / sec
+04:04:49   ETA: 0.00 secs
+04:04:49   max GPU memory: 14511.2 MiB
+04:04:49   ------------------------------
+04:04:49   average binary cross entropy: 0.411888
+04:04:49   Save checkpoint to model_epoch_5.pth
+04:04:52   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:04:52   Evaluate on valid
+04:33:57   ------------------------------
+04:33:58   [1p] mrr: 0.353694
+04:33:58   [2i] mrr: 0.33665
+04:33:58   [2in] mrr: 0.0649624
+04:33:58   [2p] mrr: 0.0937447
+04:33:58   [2u-DNF] mrr: 0.0951758
+04:33:58   [3i] mrr: 0.512741
+04:33:58   [3in] mrr: 0.178237
+04:33:58   [3p] mrr: 0.0863247
+04:33:58   [EPFO] mrr: 0.215099
+04:33:58   [inp] mrr: 0.0892656
+04:33:58   [ip] mrr: 0.148611
+04:33:58   [negation] mrr: 0.0907755
+04:33:58   [pi] mrr: 0.224668
+04:33:58   [pin] mrr: 0.0631796
+04:33:58   [pni] mrr: 0.0582324
+04:33:58   [up-DNF] mrr: 0.0842859
+04:33:58   mrr: 0.170698
+04:33:58   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:33:58   Epoch 5 begin
+04:33:59   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:33:59   binary cross entropy: 0.441855
+04:35:50   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:35:51   binary cross entropy: 0.559665
+04:37:43   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:37:43   binary cross entropy: 0.365488
+04:39:34   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:39:34   binary cross entropy: 0.35591
+04:41:26   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:41:26   binary cross entropy: 0.376506
+04:43:16   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:43:16   binary cross entropy: 0.565413
+04:45:07   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:45:07   binary cross entropy: 0.36179
+04:46:59   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:46:59   binary cross entropy: 0.414298
+04:48:49   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:48:50   binary cross entropy: 0.299917
+04:50:41   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:50:41   binary cross entropy: 0.332839
+04:52:31   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:52:31   Epoch 5 end
+04:52:31   duration: 47.69 mins
+04:52:31   speed: 0.35 batch / sec
+04:52:31   ETA: 0.00 secs
+04:52:31   max GPU memory: 13477.8 MiB
+04:52:31   ------------------------------
+04:52:31   average binary cross entropy: 0.407454
+04:52:31   Save checkpoint to model_epoch_6.pth
+04:52:32   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+04:52:32   Evaluate on valid
+05:21:45   ------------------------------
+05:21:45   [1p] mrr: 0.35448
+05:21:45   [2i] mrr: 0.333491
+05:21:45   [2in] mrr: 0.0666004
+05:21:45   [2p] mrr: 0.0922797
+05:21:45   [2u-DNF] mrr: 0.0954997
+05:21:45   [3i] mrr: 0.510995
+05:21:45   [3in] mrr: 0.176238
+05:21:45   [3p] mrr: 0.087712
+05:21:45   [EPFO] mrr: 0.216551
+05:21:45   [inp] mrr: 0.0886548
+05:21:45   [ip] mrr: 0.143696
+05:21:45   [negation] mrr: 0.0889256
+05:21:45   [pi] mrr: 0.24235
+05:21:45   [pin] mrr: 0.0588408
+05:21:45   [pni] mrr: 0.0542942
+05:21:45   [up-DNF] mrr: 0.0884544
+05:21:45   mrr: 0.17097
+05:21:45   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:21:45   Epoch 6 begin
+05:21:46   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:21:47   binary cross entropy: 0.389332
+05:23:38   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:23:38   binary cross entropy: 0.32281
+05:25:30   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:25:30   binary cross entropy: 0.495995
+05:27:22   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:27:22   binary cross entropy: 0.419982
+05:29:15   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:29:15   binary cross entropy: 0.358008
+05:31:06   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:31:06   binary cross entropy: 0.414911
+05:32:58   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:32:59   binary cross entropy: 0.329498
+05:34:51   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:34:51   binary cross entropy: 0.395465
+05:36:43   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:36:44   binary cross entropy: 0.460764
+05:38:35   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:38:36   binary cross entropy: 0.449669
+05:40:27   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:40:27   Epoch 6 end
+05:40:27   duration: 47.94 mins
+05:40:27   speed: 0.35 batch / sec
+05:40:27   ETA: 0.00 secs
+05:40:27   max GPU memory: 13499.2 MiB
+05:40:27   ------------------------------
+05:40:27   average binary cross entropy: 0.406478
+05:40:27   Save checkpoint to model_epoch_7.pth
+05:40:28   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+05:40:28   Evaluate on valid
+06:10:02   ------------------------------
+06:10:02   [1p] mrr: 0.362765
+06:10:02   [2i] mrr: 0.336554
+06:10:02   [2in] mrr: 0.0684243
+06:10:02   [2p] mrr: 0.0947759
+06:10:02   [2u-DNF] mrr: 0.0935149
+06:10:02   [3i] mrr: 0.510549
+06:10:02   [3in] mrr: 0.183449
+06:10:02   [3p] mrr: 0.0889347
+06:10:02   [EPFO] mrr: 0.217503
+06:10:02   [inp] mrr: 0.0882445
+06:10:02   [ip] mrr: 0.148558
+06:10:02   [negation] mrr: 0.0913755
+06:10:02   [pi] mrr: 0.234241
+06:10:02   [pin] mrr: 0.0600089
+06:10:02   [pni] mrr: 0.0567507
+06:10:02   [up-DNF] mrr: 0.0876331
+06:10:02   mrr: 0.172457
+06:10:02   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:10:02   Epoch 7 begin
+06:10:03   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:10:04   binary cross entropy: 0.346779
+06:11:55   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:11:56   binary cross entropy: 0.501723
+06:13:47   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:13:47   binary cross entropy: 0.29395
+06:15:39   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:15:40   binary cross entropy: 0.31961
+06:17:31   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:17:32   binary cross entropy: 0.362936
+06:19:24   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:19:24   binary cross entropy: 0.458668
+06:21:15   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:21:15   binary cross entropy: 0.510935
+06:23:07   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:23:08   binary cross entropy: 0.619132
+06:24:59   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:24:59   binary cross entropy: 0.460599
+06:26:51   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:26:51   binary cross entropy: 0.48263
+06:28:42   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:28:42   Epoch 7 end
+06:28:42   duration: 48.25 mins
+06:28:42   speed: 0.35 batch / sec
+06:28:42   ETA: 0.00 secs
+06:28:42   max GPU memory: 13869.1 MiB
+06:28:42   ------------------------------
+06:28:42   average binary cross entropy: 0.402599
+06:28:42   Save checkpoint to model_epoch_8.pth
+06:28:43   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:28:43   Evaluate on valid
+06:58:19   ------------------------------
+06:58:19   [1p] mrr: 0.36647
+06:58:19   [2i] mrr: 0.340214
+06:58:19   [2in] mrr: 0.0652495
+06:58:19   [2p] mrr: 0.0924857
+06:58:19   [2u-DNF] mrr: 0.101136
+06:58:19   [3i] mrr: 0.514839
+06:58:19   [3in] mrr: 0.182266
+06:58:19   [3p] mrr: 0.087825
+06:58:19   [EPFO] mrr: 0.219708
+06:58:19   [inp] mrr: 0.0865526
+06:58:19   [ip] mrr: 0.152012
+06:58:19   [negation] mrr: 0.0901551
+06:58:19   [pi] mrr: 0.235064
+06:58:19   [pin] mrr: 0.0565963
+06:58:19   [pni] mrr: 0.0601108
+06:58:19   [up-DNF] mrr: 0.0873227
+06:58:19   mrr: 0.173439
+06:58:19   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:58:19   Epoch 8 begin
+06:58:21   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+06:58:21   binary cross entropy: 0.447426
+07:00:13   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:00:13   binary cross entropy: 0.366377
+07:02:05   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:02:05   binary cross entropy: 0.30912
+07:03:57   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:03:57   binary cross entropy: 0.338274
+07:05:48   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:05:48   binary cross entropy: 0.305579
+07:07:40   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:07:40   binary cross entropy: 0.531448
+07:09:31   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:09:31   binary cross entropy: 0.326897
+07:11:23   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:11:23   binary cross entropy: 0.480323
+07:13:16   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:13:16   binary cross entropy: 0.432339
+07:15:09   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:15:09   binary cross entropy: 0.332666
+07:17:00   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:17:00   Epoch 8 end
+07:17:00   duration: 48.29 mins
+07:17:00   speed: 0.35 batch / sec
+07:17:00   ETA: 0.00 secs
+07:17:00   max GPU memory: 14338.9 MiB
+07:17:00   ------------------------------
+07:17:00   average binary cross entropy: 0.39665
+07:17:00   Save checkpoint to model_epoch_9.pth
+07:17:00   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:17:00   Evaluate on valid
+07:46:44   ------------------------------
+07:46:44   [1p] mrr: 0.35883
+07:46:44   [2i] mrr: 0.330775
+07:46:44   [2in] mrr: 0.074441
+07:46:44   [2p] mrr: 0.0948354
+07:46:44   [2u-DNF] mrr: 0.0971974
+07:46:44   [3i] mrr: 0.511563
+07:46:44   [3in] mrr: 0.17993
+07:46:44   [3p] mrr: 0.0844504
+07:46:44   [EPFO] mrr: 0.21609
+07:46:44   [inp] mrr: 0.0898413
+07:46:44   [ip] mrr: 0.147948
+07:46:44   [negation] mrr: 0.0940199
+07:46:44   [pi] mrr: 0.23019
+07:46:44   [pin] mrr: 0.0613506
+07:46:44   [pni] mrr: 0.0645369
+07:46:44   [up-DNF] mrr: 0.0890237
+07:46:44   mrr: 0.172494
+07:46:44   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:46:45   Epoch 9 begin
+07:46:46   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:46:46   binary cross entropy: 0.30642
+07:48:37   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:48:37   binary cross entropy: 0.297585
+07:50:30   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:50:30   binary cross entropy: 0.446944
+07:52:22   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:52:22   binary cross entropy: 0.334839
+07:54:15   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:54:15   binary cross entropy: 0.450226
+07:56:07   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:56:07   binary cross entropy: 0.354924
+07:58:00   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:58:00   binary cross entropy: 0.416698
+07:59:52   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+07:59:53   binary cross entropy: 0.352659
+08:01:45   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+08:01:46   binary cross entropy: 0.35361
+08:03:38   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+08:03:38   binary cross entropy: 0.34892
+08:05:30   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+08:05:30   Epoch 9 end
+08:05:30   duration: 48.51 mins
+08:05:30   speed: 0.34 batch / sec
+08:05:30   ETA: 0.00 secs
+08:05:30   max GPU memory: 13913.0 MiB
+08:05:30   ------------------------------
+08:05:30   average binary cross entropy: 0.396265
+08:05:30   Save checkpoint to model_epoch_10.pth
+08:05:31   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+08:05:31   Evaluate on valid
+08:35:09   ------------------------------
+08:35:09   [1p] mrr: 0.380738
+08:35:09   [2i] mrr: 0.336491
+08:35:09   [2in] mrr: 0.0724096
+08:35:09   [2p] mrr: 0.101629
+08:35:09   [2u-DNF] mrr: 0.105072
+08:35:09   [3i] mrr: 0.515003
+08:35:09   [3in] mrr: 0.181868
+08:35:09   [3p] mrr: 0.0891948
+08:35:09   [EPFO] mrr: 0.222371
+08:35:09   [inp] mrr: 0.0882115
+08:35:09   [ip] mrr: 0.150193
+08:35:09   [negation] mrr: 0.093708
+08:35:09   [pi] mrr: 0.228419
+08:35:09   [pin] mrr: 0.0622606
+08:35:09   [pni] mrr: 0.0637902
+08:35:09   [up-DNF] mrr: 0.0945957
+08:35:09   mrr: 0.17642
+08:35:09   Load checkpoint from model_epoch_10.pth
+08:35:09   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+08:35:09   Evaluate on valid
+09:11:58   ------------------------------
+09:11:58   [1p] hits@1: 0.276971
+09:11:58   [1p] mape: 0.644672
+09:11:58   [1p] mrr: 0.380738
+09:11:58   [1p] spearmanr: 0.92717
+09:11:58   [2i] hits@1: 0.222694
+09:11:58   [2i] mape: 0.408424
+09:11:58   [2i] mrr: 0.336491
+09:11:58   [2i] spearmanr: 0.984884
+09:11:58   [2in] hits@1: 0.02668
+09:11:58   [2in] mape: 0.548965
+09:11:58   [2in] mrr: 0.0724095
+09:11:58   [2in] spearmanr: 0.893075
+09:11:58   [2p] hits@1: 0.0488827
+09:11:58   [2p] mape: 0.242207
+09:11:58   [2p] mrr: 0.101629
+09:11:58   [2p] spearmanr: 0.982027
+09:11:58   [2u-DNF] hits@1: 0.0472739
+09:11:58   [2u-DNF] mape: 1.74676
+09:11:58   [2u-DNF] mrr: 0.105072
+09:11:58   [2u-DNF] spearmanr: 0.898783
+09:11:58   [3i] hits@1: 0.408959
+09:11:58   [3i] mape: 0.533445
+09:11:58   [3i] mrr: 0.515003
+09:11:58   [3i] spearmanr: 0.969086
+09:11:58   [3in] hits@1: 0.0966472
+09:11:58   [3in] mape: 0.666074
+09:11:58   [3in] mrr: 0.181868
+09:11:58   [3in] spearmanr: 0.814608
+09:11:58   [3p] hits@1: 0.0440547
+09:11:58   [3p] mape: 0.207171
+09:11:58   [3p] mrr: 0.0891948
+09:11:58   [3p] spearmanr: 0.975945
+09:11:58   [EPFO] hits@1: 0.147918
+09:11:58   [EPFO] mape: 0.534931
+09:11:58   [EPFO] mrr: 0.222371
+09:11:58   [EPFO] spearmanr: 0.960136
+09:11:58   [inp] hits@1: 0.0373971
+09:11:58   [inp] mape: 0.640068
+09:11:58   [inp] mrr: 0.0882116
+09:11:58   [inp] spearmanr: 0.709228
+09:11:58   [ip] hits@1: 0.0960626
+09:11:58   [ip] mape: 0.360813
+09:11:58   [ip] mrr: 0.150193
+09:11:58   [ip] spearmanr: 0.962919
+09:11:58   [negation] hits@1: 0.0417689
+09:11:58   [negation] mape: 0.556414
+09:11:58   [negation] mrr: 0.093708
+09:11:58   [negation] spearmanr: 0.841051
+09:11:58   [pi] hits@1: 0.14243
+09:11:58   [pi] mape: 0.339388
+09:11:58   [pi] mrr: 0.228419
+09:11:58   [pi] spearmanr: 0.975378
+09:11:58   [pin] hits@1: 0.0256729
+09:11:58   [pin] mape: 0.601385
+09:11:58   [pin] mrr: 0.0622607
+09:11:58   [pin] spearmanr: 0.804592
+09:11:58   [pni] hits@1: 0.0224472
+09:11:58   [pni] mape: 0.325578
+09:11:58   [pni] mrr: 0.0637902
+09:11:58   [pni] spearmanr: 0.983754
+09:11:58   [up-DNF] hits@1: 0.0439345
+09:11:58   [up-DNF] mape: 0.331507
+09:11:58   [up-DNF] mrr: 0.0945957
+09:11:58   [up-DNF] spearmanr: 0.965035
+09:11:58   hits@1: 0.110008
+09:11:58   mape: 0.542604
+09:11:58   mrr: 0.17642
+09:11:58   spearmanr: 0.917606
+09:11:58   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+09:11:58   Evaluate on test
+09:43:02   ------------------------------
+09:43:02   [1p] hits@1: 0.291329
+09:43:02   [1p] mape: 0.725246
+09:43:02   [1p] mrr: 0.392347
+09:43:02   [1p] spearmanr: 0.918207
+09:43:02   [2i] hits@1: 0.258349
+09:43:02   [2i] mape: 0.386199
+09:43:02   [2i] mrr: 0.359758
+09:43:02   [2i] spearmanr: 0.982902
+09:43:02   [2in] hits@1: 0.0256963
+09:43:02   [2in] mape: 0.552703
+09:43:02   [2in] mrr: 0.0674651
+09:43:02   [2in] spearmanr: 0.909417
+09:43:02   [2p] hits@1: 0.0644704
+09:43:02   [2p] mape: 0.282393
+09:43:02   [2p] mrr: 0.119045
+09:43:02   [2p] spearmanr: 0.967249
+09:43:02   [2u-DNF] hits@1: 0.0758149
+09:43:02   [2u-DNF] mape: 1.59965
+09:43:02   [2u-DNF] mrr: 0.134694
+09:43:02   [2u-DNF] spearmanr: 0.895375
+09:43:02   [3i] hits@1: 0.423229
+09:43:02   [3i] mape: 0.517855
+09:43:02   [3i] mrr: 0.520108
+09:43:02   [3i] spearmanr: 0.96272
+09:43:02   [3in] hits@1: 0.0649993
+09:43:02   [3in] mape: 0.669629
+09:43:02   [3in] mrr: 0.141767
+09:43:02   [3in] spearmanr: 0.840054
+09:43:02   [3p] hits@1: 0.0528393
+09:43:02   [3p] mape: 0.32828
+09:43:02   [3p] mrr: 0.0982814
+09:43:02   [3p] spearmanr: 0.946334
+09:43:02   [EPFO] hits@1: 0.170688
+09:43:02   [EPFO] mape: 0.556224
+09:43:02   [EPFO] mrr: 0.242077
+09:43:02   [EPFO] spearmanr: 0.944196
+09:43:02   [inp] hits@1: 0.0366712
+09:43:02   [inp] mape: 0.63758
+09:43:02   [inp] mrr: 0.082614
+09:43:02   [inp] spearmanr: 0.764667
+09:43:02   [ip] hits@1: 0.114595
+09:43:02   [ip] mape: 0.405829
+09:43:02   [ip] mrr: 0.170636
+09:43:02   [ip] spearmanr: 0.917237
+09:43:02   [negation] hits@1: 0.0331708
+09:43:02   [negation] mape: 0.559966
+09:43:02   [negation] mrr: 0.0809252
+09:43:02   [negation] spearmanr: 0.862986
+09:43:02   [pi] hits@1: 0.196239
+09:43:02   [pi] mape: 0.398225
+09:43:02   [pi] mrr: 0.27419
+09:43:02   [pi] spearmanr: 0.948274
+09:43:02   [pin] hits@1: 0.0190316
+09:43:02   [pin] mape: 0.611457
+09:43:02   [pin] mrr: 0.0558763
+09:43:02   [pin] spearmanr: 0.818124
+09:43:02   [pni] hits@1: 0.0194558
+09:43:02   [pni] mape: 0.328462
+09:43:02   [pni] mrr: 0.0569035
+09:43:02   [pni] spearmanr: 0.982666
+09:43:02   [up-DNF] hits@1: 0.059329
+09:43:02   [up-DNF] mape: 0.36233
+09:43:02   [up-DNF] mrr: 0.109637
+09:43:02   [up-DNF] spearmanr: 0.959465
+09:43:02   hits@1: 0.121575
+09:43:02   mape: 0.55756
+09:43:02   mrr: 0.184523
+09:43:02   spearmanr: 0.915192
