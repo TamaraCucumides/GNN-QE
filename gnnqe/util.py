@@ -116,6 +116,7 @@ def build_solver(cfg, dataset):
     solver = core.Engine(task, train_set, valid_set, test_set, optimizer, **cfg.engine)
 
     if "checkpoint" in cfg:
+        print(os.listdir())
         solver.load(cfg.checkpoint)
 
     return solver
