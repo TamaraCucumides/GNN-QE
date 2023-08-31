@@ -10,12 +10,12 @@
 #SBATCH --cpus=8
 #SBATCH --partition=ialab-high
 pwd; hostname; date
-echo "Let's do some visualizationsssss :P"
+echo "Start"
 echo $(pwd)
 cd /home/tacucumides
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
 cd /home/tacucumides/GNN-QE
-python script/visualize.py -c config/fb15k237_visualize.yaml --checkpoint ../scratch/experiments/LogicalQuery/FB15k237LogicalQuery/GNN-QE/2023-08-30-00-32-39/model_epoch_10.pth
+python script/visualize.py -c config/fb15k237_visualize.yaml --checkpoint ../../scratch/experiments/LogicalQuery/FB15k237LogicalQuery/GNN-QE/2023-08-30-00-32-39/model_epoch_10.pth
 
  
