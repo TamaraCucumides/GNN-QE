@@ -32,6 +32,6 @@ if __name__ == "__main__":
     dataset = core.Configurable.load_config_dict(cfg.dataset)
     solver = util.build_solver(cfg, dataset)
 
-    solver.load()
+    #solver.load(cfg.checkpoint)
 
     test(cfg, solver)
