@@ -11,7 +11,7 @@ from torchdrug.utils import comm
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from gnnqe import dataset, gnn, model, task, util
 
-def test(solver):
+def test(cfg, solver):
     solver.model.metric = ("mrr", "hits@1", "mape", "spearmanr")
     #solver.evaluate("valid") only evaluate on test?
     solver.evaluate("test")
