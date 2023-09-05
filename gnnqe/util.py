@@ -120,3 +120,29 @@ def build_solver(cfg, dataset):
         solver.load(cfg.checkpoint)
 
     return solver
+
+def one_hot(index, size):
+    """
+    Expand indexes into a combination of one-hot vectors and vectors of ones for -5 positions.
+
+    Parameters:
+        index (Tensor): index
+        size (int): size of the one-hot dimension
+    """
+    shape = list(index.shape) + [size]
+    result = torch.zeros(shape, device=index.device)
+    
+    # Check if index contains -5
+    if -5 in index:
+        result[index == -5] = 1  # Set the positions of -1 to 1
+    
+    # Apply one-hot encoding for non-negative indices
+    non_negative_indices = index[index >= 0]
+    if non_negative_indices.numel():
+        assert non_negative_indices.min() >= 0
+        assert non_negative_indices.max() < size
+        result_non_negative = torch.zeros(non_negative_indices.shape[0], size, device=index.device)
+        result_non_negative.scatter_(-1, non_negative_indices.unsqueeze(-1), 1)
+        result[index >= 0] = result_non_negative
+        
+    return result
