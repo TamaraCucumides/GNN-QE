@@ -12,9 +12,9 @@
 pwd; hostname; date
 echo "Start training"
 echo $(pwd)
-cd /home/tacucumides
+cd /home/tacucumides/storage
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
-cd /home/tacucumides/GNN-QE
+cd /home/tacucumides/storage/GNN-QE
 python script/run.py -c config/fb15k237.yaml --gpus [0]
  
