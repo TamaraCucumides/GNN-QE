@@ -12,10 +12,10 @@
 pwd; hostname; date
 echo "Start"
 echo $(pwd)
-cd /home/tacucumides
+cd /home/tacucumides/storage
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
-cd /home/tacucumides/GNN-QE
+cd /home/tacucumides/storage/GNN-QE
 python script/test.py -c config/test.yaml --checkpoint ../2023-08-30-00-32-39/model_epoch_9.pth --gpus [0]
 
  
