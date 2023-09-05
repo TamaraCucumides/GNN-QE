@@ -7,6 +7,7 @@ from torchdrug.layers import functional
 from torchdrug.core import Registry as R
 
 from .data import Stack
+from .util import one_hot
 
 
 @R.register("model.GNN-QE")
@@ -118,7 +119,8 @@ class QueryExecutor(nn.Module, core.Configurable):
         return var_probs, easy_answers, all_answers
 
     def apply_operand(self, mask, h_index, num_node):
-        h_prob = functional.one_hot(h_index, num_node)
+        #h_prob = functional.one_hot(h_index, num_node)
+        h_prob = one_hot(h_index, num_node)
         self.stack.push(mask, h_prob)
         self.symbolic_stack.push(mask, h_prob)
         self.var.push(mask, h_prob)
