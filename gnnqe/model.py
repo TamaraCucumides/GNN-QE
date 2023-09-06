@@ -123,12 +123,15 @@ class QueryExecutor(nn.Module, core.Configurable):
         #h_prob = functional.one_hot(h_index, num_node)
         h_prob = one_hot(h_index, num_node)
         self.stack.push(mask, h_prob)
+        print(self.stack.SP[mask])
         self.symbolic_stack.push(mask, h_prob)
+        print(self.symbolic_stack.[mask])
         self.var.push(mask, h_prob)
         self.symbolic_var.push(mask, h_prob)
         self.IP[mask] += 1
 
     def apply_intersection(self, mask):
+        print("Apply intersection")
         y_prob = self.stack.pop(mask)
         sym_y_prob = self.symbolic_stack.pop(mask)
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
@@ -141,6 +144,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_union(self, mask):
+        print("Apply union")
         y_prob, sym_y_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         z_prob = self.disjunction(x_prob, y_prob)
@@ -152,6 +156,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_negation(self, mask):
+        print("Apply negation")
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         y_prob = self.negation(x_prob)
         sym_y_prob = self.negation(sym_x_prob)
@@ -162,6 +167,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_projection(self, mask, graph, r_index, all_loss=None, metric=None):
+        print("Apply projection")
         h_prob, sym_h_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         if all_loss is not None:
             # apply traversal dropout based on the output of the symbolic model
