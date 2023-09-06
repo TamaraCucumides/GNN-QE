@@ -125,7 +125,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.stack.push(mask, h_prob)
         print(self.stack.SP[mask])
         self.symbolic_stack.push(mask, h_prob)
-        print(self.symbolic_stack.[mask])
+        print(self.symbolic_stack[mask])
         self.var.push(mask, h_prob)
         self.symbolic_var.push(mask, h_prob)
         self.IP[mask] += 1
