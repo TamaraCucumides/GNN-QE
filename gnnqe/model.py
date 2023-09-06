@@ -125,13 +125,14 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.stack.push(mask, h_prob)
         print(self.stack.SP[mask])
         self.symbolic_stack.push(mask, h_prob)
-        print(self.symbolic_stack[mask])
+        print(self.symbolic_stack.SP[mask])
         self.var.push(mask, h_prob)
         self.symbolic_var.push(mask, h_prob)
         self.IP[mask] += 1
 
     def apply_intersection(self, mask):
         print("Apply intersection")
+        print(mask)
         y_prob = self.stack.pop(mask)
         sym_y_prob = self.symbolic_stack.pop(mask)
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
