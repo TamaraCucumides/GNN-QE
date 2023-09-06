@@ -119,15 +119,18 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
                 pbar = tqdm(desc="Processing %s queries" % split, total=num_sample)
             for type in type2queries:
                 struct_queries = sorted(type2queries[type])
-                for query in struct_queries:
-                    easy_answers.append(query2easy_answers[query])
-                    hard_answers.append(query2hard_answers[query])
-                    query = Query.from_nested(query)
-                    queries.append(query)
-                    max_query_length = max(max_query_length, len(query))
-                    types.append(self.type2id[type])
-                    if verbose:
-                        pbar.update(1)
+                for query in struct_queries: #Borrar el try except cuando arreglemos el codigo
+                    try:
+                        easy_answers.append(query2easy_answers[query])
+                        hard_answers.append(query2hard_answers[query])
+                        query = Query.from_nested(query)
+                        queries.append(query)
+                        max_query_length = max(max_query_length, len(query))
+                        types.append(self.type2id[type])
+                        if verbose:
+                            pbar.update(1)
+                    except KeyError:
+                        print("Ignorando la query pq no tenemos respuestas")
             num_samples.append(num_sample)
 
         self.queries = queries
