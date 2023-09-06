@@ -129,6 +129,10 @@ def one_hot(index, size):
         index (Tensor): index
         size (int): size of the one-hot dimension
     """
+
+    print(index)
+    print(size)
+    
     shape = list(index.shape) + [size]
     result = torch.zeros(shape, device=index.device)
     
