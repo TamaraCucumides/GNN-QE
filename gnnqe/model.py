@@ -83,6 +83,7 @@ class QueryExecutor(nn.Module, core.Configurable):
                 h_index = op[is_operand].get_operand()
                 self.apply_operand(is_operand, h_index, graph.num_node)
             if is_intersection.any():
+                print("Is intersection", is_intersection)
                 self.apply_intersection(is_intersection)
             if is_union.any():
                 self.apply_union(is_union)
