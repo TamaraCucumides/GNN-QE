@@ -119,9 +119,9 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
                 pbar = tqdm(desc="Processing %s queries" % split, total=num_sample)
             for type in type2queries: 
                 try: #Este try except tb vamos a tener que sacarlo dps
-                    struct_queries = sorted(type2queries[tip])
+                    struct_queries = sorted(type2queries[type])
                 except: #funciona mal para ip inp up-DNF
-                    struct_queries = type2queries[tip]
+                    struct_queries = type2queries[type]
                 for query in struct_queries: #Borrar el try except cuando arreglemos el codigo
                     try:
                         easy_answers.append(query2easy_answers[query])
