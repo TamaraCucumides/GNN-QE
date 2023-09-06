@@ -123,9 +123,9 @@ class QueryExecutor(nn.Module, core.Configurable):
         #h_prob = functional.one_hot(h_index, num_node)
         h_prob = one_hot(h_index, num_node)
         self.stack.push(mask, h_prob)
-        print(self.stack.SP[mask])
+        print((self.stack.SP[mask] < 1).any())
         self.symbolic_stack.push(mask, h_prob)
-        print(self.symbolic_stack.SP[mask])
+        print(self.stack.symbolic_stack.SP[mask]< 1).any())
         self.var.push(mask, h_prob)
         self.symbolic_var.push(mask, h_prob)
         self.IP[mask] += 1
