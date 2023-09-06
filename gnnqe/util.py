@@ -129,7 +129,7 @@ def one_hot(index, size):
         index (Tensor): index
         size (int): size of the one-hot dimension
     """
-
+    print("Custom one-hot")
     print(index)
     print(size)
     
