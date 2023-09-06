@@ -134,6 +134,7 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
                             pbar.update(1)
                     except KeyError:
                         print("Ignorando la query pq no tenemos respuestas")
+                        queries.append(None) #para no pitearme los indices
             num_samples.append(num_sample)
 
         self.queries = queries
@@ -144,15 +145,20 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
         self.max_query_length = max_query_length
 
     def __getitem__(self, index):
-        query = self.queries[index]
-        easy_answer = torch.tensor(list(self.easy_answers[index]), dtype=torch.long)
-        hard_answer = torch.tensor(list(self.hard_answers[index]), dtype=torch.long)
-        return {
-            "query": F.pad(query, (0, self.max_query_length - len(query)), value=query.stop),
-            "type": self.types[index],
-            "easy_answer": functional.as_mask(easy_answer, self.num_entity),
-            "hard_answer": functional.as_mask(hard_answer, self.num_entity),
-        }
+        #tb hay que sacar este try-except, aunque creo que esto se puede estar piteando algo, aunque creo q no debiese entrar aqui
+        try:
+            query = self.queries[index]
+            easy_answer = torch.tensor(list(self.easy_answers[index]), dtype=torch.long)
+            hard_answer = torch.tensor(list(self.hard_answers[index]), dtype=torch.long)
+            return {
+                "query": F.pad(query, (0, self.max_query_length - len(query)), value=query.stop),
+                "type": self.types[index],
+                "easy_answer": functional.as_mask(easy_answer, self.num_entity),
+                "hard_answer": functional.as_mask(hard_answer, self.num_entity),
+            }
+        except:
+            print("no debiese printearse")
+            return None
 
     def __len__(self):
         return len(self.queries)
