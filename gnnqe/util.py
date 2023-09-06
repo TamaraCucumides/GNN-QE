@@ -149,5 +149,7 @@ def one_hot(index, size):
         result_non_negative = torch.zeros(non_negative_indices.shape[0], size, device=index.device)
         result_non_negative.scatter_(-1, non_negative_indices.unsqueeze(-1), 1)
         result[index >= 0] = result_non_negative
+
+    print(result)
         
     return result
