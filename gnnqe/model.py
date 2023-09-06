@@ -128,7 +128,8 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_intersection(self, mask):
-        y_prob, sym_y_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
+        y_prob = self.stack.pop(mask)
+        sym_y_prob = self.symbolic_stack.pop(mask)
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         z_prob = self.conjunction(x_prob, y_prob)
         sym_z_prob = self.conjunction(sym_x_prob, sym_y_prob)
