@@ -212,7 +212,7 @@ class Stack(object):
         self.SP[mask] += 1
 
     def pop(self, mask=None):
-        rint("Popping from stack")
+        print("Popping from stack")
         if (self.SP[mask] < 1).any():
             raise ValueError("Stack underflow")
         if mask is None:
