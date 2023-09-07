@@ -25,7 +25,9 @@ class QueryExecutor(nn.Module, core.Configurable):
     stack_size = 2
 
     def __init__(self, model, logic="product", dropout_ratio=0.25, num_mlp_layer=2):
+        print("Initializing QueryExecutor")
         super(QueryExecutor, self).__init__()
+        print("Initializing RelationProjection", model)
         self.model = RelationProjection(model, num_mlp_layer)
         self.symbolic_model = SymbolicTraversal()
         self.logic = logic
@@ -60,10 +62,14 @@ class QueryExecutor(nn.Module, core.Configurable):
         # we use stacks to execute postfix notations
         # check out this tutorial if you are not familiar with the algorithm
         # https://www.andrew.cmu.edu/course/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html
+        print("execute method from RelationProjection")
         batch_size = len(query)
+        print("batch_size is", batch_size)
         # we execute a neural model and a symbolic model at the same time
         # the symbolic model is used for traversal dropout at training time
         # the elements in a stack are fuzzy sets
+
+        print("Creating stacks")
         self.stack = Stack(batch_size, self.stack_size, graph.num_node, device=self.device)
         self.symbolic_stack = Stack(batch_size, self.stack_size, graph.num_node, device=self.device)
         self.var = Stack(batch_size, query.shape[1], graph.num_node, device=self.device)
@@ -74,12 +80,14 @@ class QueryExecutor(nn.Module, core.Configurable):
         op = query[all_sample, self.IP]
 
         while not op.is_stop().all():
+            print("Entering the while of execute")
             is_operand = op.is_operand()
             is_intersection = op.is_intersection()
             is_union = op.is_union()
             is_negation = op.is_negation()
             is_projection = op.is_projection()
             if is_operand.any():
+                print("Is operand", is_operand)
                 h_index = op[is_operand].get_operand()
                 self.apply_operand(is_operand, h_index, graph.num_node)
             if is_intersection.any():
@@ -100,6 +108,7 @@ class QueryExecutor(nn.Module, core.Configurable):
             raise ValueError("More operands than expected")
 
     def forward(self, graph, query, all_loss=None, metric=None):
+        print("Forward GNN")
         self.execute(graph, query, all_loss=all_loss, metric=metric)
 
         # convert probability to logit for compatibility reasons
@@ -215,6 +224,7 @@ class RelationProjection(nn.Module, core.Configurable):
     """Wrap a GNN model for relation projection."""
 
     def __init__(self, model, num_mlp_layer=2):
+        print("Inside module RelationProjection")
         super(RelationProjection, self).__init__()
         self.model = model
         self.query = nn.Embedding(model.num_relation, model.input_dim)
