@@ -122,6 +122,7 @@ def build_solver(cfg, dataset):
     return solver
 
 def one_hot(index, size):
+    print("One-hot")
     """
     Expand indexes into a combination of one-hot vectors and vectors of ones for -5 positions.
 
@@ -135,6 +136,7 @@ def one_hot(index, size):
     
     # Check if index contains -5
     if -5 in index:
+        print("Doing all ones vector.")
         result[index == -5] = 1  # Set the positions of -5 to 1s
     
     # Apply one-hot encoding for non-negative indices
