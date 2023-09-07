@@ -108,7 +108,7 @@ class QueryExecutor(nn.Module, core.Configurable):
             raise ValueError("More operands than expected")
 
     def forward(self, graph, query, all_loss=None, metric=None):
-        print("Forward GNN")
+        print("Forward Query executor")
         self.execute(graph, query, all_loss=all_loss, metric=metric)
 
         # convert probability to logit for compatibility reasons
