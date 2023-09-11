@@ -144,6 +144,6 @@ def one_hot(index, size):
         assert non_9999_indices.max() < size
         result_non_9999 = torch.zeros(non_9999_indices.shape[0], size, device=index.device)
         result_non_9999.scatter_(-1, non_9999_indices.unsqueeze(-1), 1)
-        result[index != 9999] = result_non_9999
+        result[index != 99999] = result_non_9999
         
     return result
