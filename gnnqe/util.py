@@ -134,10 +134,11 @@ def one_hot(index, size):
     shape = list(index.shape) + [size]
     result = torch.zeros(shape, device=index.device)
     
-    if 9999 in index:
+    if 99999 in index:
+        print("All ones!")
         result[index == 99999] = 1  # Set the positions of 9999 to all-ones
     
-    # Apply one-hot encoding for non-9999 indices
+    # Apply one-hot encoding for non-99999 indices
     non_9999_indices = index[index != 99999]
     if non_9999_indices.numel():
         assert non_9999_indices.min() >= 0
