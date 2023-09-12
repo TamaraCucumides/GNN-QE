@@ -205,14 +205,14 @@ class Stack(object):
         self.stack_size = stack_size
 
     def push(self, mask, value):
-        print("Pushing into stack")
+        #print("Pushing into stack")
         if (self.SP[mask] >= self.stack_size).any():
             raise ValueError("Stack overflow")
         self.stack[mask, self.SP[mask]] = value
         self.SP[mask] += 1
 
     def pop(self, mask=None):
-        print("Popping from stack")
+        #print("Popping from stack")
         if (self.SP[mask] < 1).any():
             raise ValueError("Stack underflow")
         if mask is None:
