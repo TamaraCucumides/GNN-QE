@@ -118,23 +118,16 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
             if verbose:
                 pbar = tqdm(desc="Processing %s queries" % split, total=num_sample)
             for type in type2queries: 
-                try: #Este try except tb vamos a tener que sacarlo dps
-                    struct_queries = sorted(type2queries[type])
-                except: #funciona mal para ip inp up-DNF
-                    struct_queries = type2queries[type]
+                struct_queries = sorted(type2queries[type])
                 for query in struct_queries: #Borrar el try except cuando arreglemos el codigo
-                    try:
-                        easy_answers.append(query2easy_answers[query])
-                        hard_answers.append(query2hard_answers[query])
-                        query = Query.from_nested(query)
-                        queries.append(query)
-                        max_query_length = max(max_query_length, len(query))
-                        types.append(self.type2id[type])
-                        if verbose:
-                            pbar.update(1)
-                    except KeyError:
-                        print("Ignorando la query pq no tenemos respuestas")
-                        queries.append(None) #para no pitearme los indices
+                    easy_answers.append(query2easy_answers[query])
+                    hard_answers.append(query2hard_answers[query])
+                    query = Query.from_nested(query)
+                    queries.append(query)
+                    max_query_length = max(max_query_length, len(query))
+                    types.append(self.type2id[type])
+                    if verbose:
+                        pbar.update(1)
             num_samples.append(num_sample)
 
         self.queries = queries
@@ -146,19 +139,15 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
 
     def __getitem__(self, index):
         #tb hay que sacar este try-except, aunque creo que esto se puede estar piteando algo, aunque creo q no debiese entrar aqui
-        try:
-            query = self.queries[index]
-            easy_answer = torch.tensor(list(self.easy_answers[index]), dtype=torch.long)
-            hard_answer = torch.tensor(list(self.hard_answers[index]), dtype=torch.long)
-            return {
-                "query": F.pad(query, (0, self.max_query_length - len(query)), value=query.stop),
-                "type": self.types[index],
-                "easy_answer": functional.as_mask(easy_answer, self.num_entity),
-                "hard_answer": functional.as_mask(hard_answer, self.num_entity),
-            }
-        except:
-            print("no debiese printearse")
-            return None
+        query = self.queries[index]
+        easy_answer = torch.tensor(list(self.easy_answers[index]), dtype=torch.long)
+        hard_answer = torch.tensor(list(self.hard_answers[index]), dtype=torch.long)
+        return {
+            "query": F.pad(query, (0, self.max_query_length - len(query)), value=query.stop),
+            "type": self.types[index],
+            "easy_answer": functional.as_mask(easy_answer, self.num_entity),
+            "hard_answer": functional.as_mask(hard_answer, self.num_entity),
+        }
 
     def __len__(self):
         return len(self.queries)
