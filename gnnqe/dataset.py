@@ -117,9 +117,10 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
             num_sample = sum([len(q) for t, q in type2queries.items()])
             if verbose:
                 pbar = tqdm(desc="Processing %s queries" % split, total=num_sample)
-            for type in type2queries: 
+            for type in type2queries:
+                print("Type is", type)
                 struct_queries = sorted(type2queries[type])
-                for query in struct_queries: #Borrar el try except cuando arreglemos el codigo
+                for query in struct_queries:
                     easy_answers.append(query2easy_answers[query])
                     hard_answers.append(query2hard_answers[query])
                     query = Query.from_nested(query)
