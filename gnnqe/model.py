@@ -25,9 +25,9 @@ class QueryExecutor(nn.Module, core.Configurable):
     stack_size = 2
 
     def __init__(self, model, logic="product", dropout_ratio=0.25, num_mlp_layer=2):
-        print("Initializing QueryExecutor")
+        #print("Initializing QueryExecutor")
         super(QueryExecutor, self).__init__()
-        print("Initializing RelationProjection", model)
+        #print("Initializing RelationProjection", model)
         self.model = RelationProjection(model, num_mlp_layer)
         self.symbolic_model = SymbolicTraversal()
         self.logic = logic
@@ -62,14 +62,14 @@ class QueryExecutor(nn.Module, core.Configurable):
         # we use stacks to execute postfix notations
         # check out this tutorial if you are not familiar with the algorithm
         # https://www.andrew.cmu.edu/course/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html
-        print("execute method from RelationProjection")
+        #print("execute method from RelationProjection")
         batch_size = len(query)
-        print("batch_size is", batch_size)
+        #print("batch_size is", batch_size)
         # we execute a neural model and a symbolic model at the same time
         # the symbolic model is used for traversal dropout at training time
         # the elements in a stack are fuzzy sets
 
-        print("Creating stacks")
+        #print("Creating stacks")
         self.stack = Stack(batch_size, self.stack_size, graph.num_node, device=self.device)
         self.symbolic_stack = Stack(batch_size, self.stack_size, graph.num_node, device=self.device)
         self.var = Stack(batch_size, query.shape[1], graph.num_node, device=self.device)
@@ -80,18 +80,18 @@ class QueryExecutor(nn.Module, core.Configurable):
         op = query[all_sample, self.IP]
 
         while not op.is_stop().all():
-            print("Entering the while of execute")
+            #print("Entering the while of execute")
             is_operand = op.is_operand()
             is_intersection = op.is_intersection()
             is_union = op.is_union()
             is_negation = op.is_negation()
             is_projection = op.is_projection()
             if is_operand.any():
-                print("Is operand", is_operand)
+                #print("Is operand", is_operand)
                 h_index = op[is_operand].get_operand()
                 self.apply_operand(is_operand, h_index, graph.num_node)
             if is_intersection.any():
-                print("Is intersection", is_intersection)
+                #print("Is intersection", is_intersection)
                 self.apply_intersection(is_intersection)
             if is_union.any():
                 self.apply_union(is_union)
@@ -108,7 +108,7 @@ class QueryExecutor(nn.Module, core.Configurable):
             raise ValueError("More operands than expected")
 
     def forward(self, graph, query, all_loss=None, metric=None):
-        print("Forward Query executor")
+        #print("Forward Query executor")
         self.execute(graph, query, all_loss=all_loss, metric=metric)
 
         # convert probability to logit for compatibility reasons
@@ -129,20 +129,20 @@ class QueryExecutor(nn.Module, core.Configurable):
         return var_probs, easy_answers, all_answers
 
     def apply_operand(self, mask, h_index, num_node):
-        print("Apply operand")
+        #print("Apply operand")
         #h_prob = functional.one_hot(h_index, num_node)
         h_prob = one_hot(h_index, num_node)
         self.stack.push(mask, h_prob)
-        print((self.stack.SP[mask] < 1).any())
+        #print((self.stack.SP[mask] < 1).any())
         self.symbolic_stack.push(mask, h_prob)
-        print((self.symbolic_stack.SP[mask]< 1).any())
+        #print((self.symbolic_stack.SP[mask]< 1).any())
         self.var.push(mask, h_prob)
         self.symbolic_var.push(mask, h_prob)
         self.IP[mask] += 1
 
     def apply_intersection(self, mask):
-        print("Apply intersection")
-        print(mask)
+        #print("Apply intersection")
+        #print(mask)
         y_prob = self.stack.pop(mask)
         sym_y_prob = self.symbolic_stack.pop(mask)
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
@@ -155,7 +155,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_union(self, mask):
-        print("Apply union")
+        #print("Apply union")
         y_prob, sym_y_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         z_prob = self.disjunction(x_prob, y_prob)
@@ -167,7 +167,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_negation(self, mask):
-        print("Apply negation")
+        #print("Apply negation")
         x_prob, sym_x_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         y_prob = self.negation(x_prob)
         sym_y_prob = self.negation(sym_x_prob)
@@ -178,7 +178,7 @@ class QueryExecutor(nn.Module, core.Configurable):
         self.IP[mask] += 1
 
     def apply_projection(self, mask, graph, r_index, all_loss=None, metric=None):
-        print("Apply projection")
+        #print("Apply projection")
         h_prob, sym_h_prob = self.stack.pop(mask), self.symbolic_stack.pop(mask)
         if all_loss is not None:
             # apply traversal dropout based on the output of the symbolic model
@@ -224,7 +224,7 @@ class RelationProjection(nn.Module, core.Configurable):
     """Wrap a GNN model for relation projection."""
 
     def __init__(self, model, num_mlp_layer=2):
-        print("Inside module RelationProjection")
+        #print("Inside module RelationProjection")
         super(RelationProjection, self).__init__()
         self.model = model
         self.query = nn.Embedding(model.num_relation, model.input_dim)
