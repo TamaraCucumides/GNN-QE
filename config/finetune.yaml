@@ -31,4 +31,8 @@ engine:
   gpus: [0]
   batch_size: 12
 
+train:
+  num_epoch: 2
+  batch_per_epoch: 1000
+
 checkpoint: {{ checkpoint }}
