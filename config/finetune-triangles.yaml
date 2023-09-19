@@ -2,7 +2,7 @@ output_dir: ~/storage/scratch/experiments/
 
 dataset:
   class: FB15k237LogicalQuery
-  path: ~/storage/kg-datasets/triangles/
+  path: ~/storage/kg-datasets/triangle-unravel/
 
 task:
   class: LogicalQuery
