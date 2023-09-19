@@ -1,3 +1,5 @@
+#!/bin/bash
+#SBATCH --workdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
 #SBATCH --job-name=gnn-qe
 #SBATCH --nodelist=hydra
