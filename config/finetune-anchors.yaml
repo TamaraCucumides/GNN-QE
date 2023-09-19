@@ -2,7 +2,7 @@ output_dir: ~/storage/scratch/experiments/
 
 dataset:
   class: FB15k237LogicalQuery
-  path: ~/storage/kg-datasets/
+  path: ~/storage/kg-datasets/sin-anchors/
 
 task:
   class: LogicalQuery
@@ -29,10 +29,10 @@ optimizer:
 
 engine:
   gpus: [0]
-  batch_size: 12
+  batch_size: 18
 
 train:
-  num_epoch: 2
+  num_epoch: 3
   batch_per_epoch: 1000
 
 checkpoint: {{ checkpoint }}
