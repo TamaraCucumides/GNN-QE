@@ -122,7 +122,6 @@ def build_solver(cfg, dataset):
     return solver
 
 def one_hot(index, size):
-    print("One-hot")
     """
     Expand indexes into a combination of one-hot vectors and vectors of ones for 99999 positions.
 
@@ -135,7 +134,6 @@ def one_hot(index, size):
     result = torch.zeros(shape, device=index.device)
     
     if 99999 in index:
-        print("All ones!")
         result[index == 99999] = 1  # Set the positions of 9999 to all-ones
     
     # Apply one-hot encoding for non-99999 indices
