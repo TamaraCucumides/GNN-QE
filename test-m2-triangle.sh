@@ -17,4 +17,4 @@ cd /home/tacucumides/
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
 cd /home/tacucumides/storage/GNN-QE
-python script/test.py -c config/test-triangles.yaml --checkpoint ../2023-09-19-15-25-45/model_epoch_2.pth --gpus [0]
+python script/test.py -c config/test-triangle.yaml --checkpoint ../2023-09-19-15-25-45/model_epoch_2.pth --gpus [0]
