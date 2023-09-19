@@ -2,7 +2,7 @@ output_dir: ~/storage/scratch/experiments/
 
 dataset:
   class: FB15k237LogicalQuery
-  path: ~/storage/kg-datasets/sin-anchors/
+  path: ~/storage/kg-datasets/sin-anchor/
 
 task:
   class: LogicalQuery
