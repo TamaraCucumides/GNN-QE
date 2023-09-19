@@ -15,4 +15,4 @@ cd /home/tacucumides/
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
 cd /home/tacucumides/storage/GNN-QE
-python script/run.py -c config/finetune.yaml --gpus [0] --checkpoint ../2023-08-30-00-32-39/model_epoch_9.pth
+python script/run.py -c config/finetune.yaml --gpus [0] --checkpoint ../2023-08-30-00-32-39/model_epoch_10.pth
