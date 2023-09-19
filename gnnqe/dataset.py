@@ -34,7 +34,8 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
         ((("e", ("r",)), ("e", ("r",)), ("u",)), ("r",)): "up-DNF",
         ((("e", ("r", "n")), ("e", ("r", "n"))), ("n",)): "2u-DM",
         ((("e", ("r", "n")), ("e", ("r", "n"))), ("n", "r")): "up-DM",
-        ("e", ("r", "r", "r", "r", "r")): "unr-TRI"
+        ("e", ("r", "r", "r", "r", "r")): "unr-TRI",
+        (('e', ('r', 'r', 'r', 'r', 'r')), ('e', ('r', 'r', 'r', 'r', 'r'))): "unr-TRI-2"
     }
 
     def load_pickle(self, path, query_types=None, union_type="DNF", verbose=0):
