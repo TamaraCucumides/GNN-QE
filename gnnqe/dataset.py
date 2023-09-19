@@ -184,10 +184,11 @@ class FB15kLogicalQuery(LogicalQueryDataset):
             os.makedirs(path)
         self.path = path
 
-        zip_file = utils.download(self.url, path, md5=self.md5)
+        #zip_file = utils.download(self.url, path, md5=self.md5)
         path = os.path.join(path, "FB15k-betae")
         if not os.path.exists(path):
-            utils.extract(zip_file)
+            print("Intentando extraer FB15k")
+            #utils.extract(zip_file)
 
         self.load_pickle(path, query_types, union_type, verbose=verbose)
 
@@ -204,10 +205,11 @@ class FB15k237LogicalQuery(LogicalQueryDataset):
             os.makedirs(path)
         self.path = path
 
-        zip_file = utils.download(self.url, path, md5=self.md5)
+        #zip_file = utils.download(self.url, path, md5=self.md5)
         path = os.path.join(path, "FB15k-237-betae")
         if not os.path.exists(path):
-            utils.extract(zip_file)
+            print("Intentando extraer FB15k237")
+            #utils.extract(zip_file)
 
         self.load_pickle(path, query_types, union_type, verbose=verbose)
 
@@ -224,9 +226,10 @@ class NELL995LogicalQuery(LogicalQueryDataset):
             os.makedirs(path)
         self.path = path
 
-        zip_file = utils.download(self.url, path, md5=self.md5)
+        #zip_file = utils.download(self.url, path, md5=self.md5)
         path = os.path.join(path, "NELL-betae")
         if not os.path.exists(path):
-            utils.extract(zip_file)
+            print("Intentando extraer NELL")
+            #utils.extract(zip_file)
 
         self.load_pickle(path, query_types, union_type, verbose=verbose)
