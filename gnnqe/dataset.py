@@ -34,7 +34,7 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
         ((("e", ("r",)), ("e", ("r",)), ("u",)), ("r",)): "up-DNF",
         ((("e", ("r", "n")), ("e", ("r", "n"))), ("n",)): "2u-DM",
         ((("e", ("r", "n")), ("e", ("r", "n"))), ("n", "r")): "up-DM",
-        (("e", ("r", "r", "r", "r", "r")), ("e", ("r", "r", "r", "r", "r"))): "unr-TRI"
+        (("e", ("r", "r", "r", "r", "r")), ("e", ("r", "r", "r", "r", "r"))): "5pi"
     }
 
     def load_pickle(self, path, query_types=None, union_type="DNF", verbose=0):
@@ -49,10 +49,14 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
             verbose (int, optional): output verbose level
         """
 
-        print("Cargando pickle")
         query_types = query_types or self.struct2type.values()
+
+        print("Query types con las que iniciamos")
+        print(query_types)
+        
         new_query_types = []
         for query_type in query_types:
+            print("Query type", query_type)
             if "u" in query_type:
                 if "-" not in query_type:
                     query_type = "%s-%s" % (query_type, union_type)
