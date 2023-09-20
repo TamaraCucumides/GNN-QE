@@ -48,6 +48,8 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
             union_type (str, optional): which union type to use, ``DNF`` or ``DM``
             verbose (int, optional): output verbose level
         """
+
+        print("Cargando pickle")
         query_types = query_types or self.struct2type.values()
         new_query_types = []
         for query_type in query_types:
@@ -57,6 +59,9 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
                 elif query_type[query_type.find("-") + 1:] != union_type:
                     continue
             new_query_types.append(query_type)
+
+        print("Las queries a cargar son")
+        print(new_query_types)
         self.id2type = sorted(new_query_types)
         self.type2id = {t: i for i, t in enumerate(self.id2type)}
 
@@ -69,7 +74,9 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
         for split in ["train", "valid", "test"]:
             triplet_file = os.path.join(path, "%s.txt" % split)
             with open(triplet_file) as fin:
+                print("Abriendo los .txt", triplet_file)
                 if verbose:
+                    print("Verbose", verbose)
                     fin = tqdm(fin, "Loading %s" % triplet_file, utils.get_line_count(triplet_file))
                 num_sample = 0
                 for line in fin:
@@ -90,6 +97,7 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
         num_samples = []
         max_query_length = 0
 
+        print("Ahora abriendo los pickles")
         for split in ["train", "valid", "test"]:
             if verbose:
                 pbar = tqdm(desc="Loading %s-*.pkl" % split, total=3)
@@ -97,8 +105,18 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
                 struct2queries = pickle.load(fin)
             if verbose:
                 pbar.update(1)
+
+            print("Struct2queries cargado desde el archivo")
+            print(struct2queries)
+            
             type2queries = {self.struct2type[k]: v for k, v in struct2queries.items()}
+
+            print("Antes del type2id")
+            print(type2queries)
             type2queries = {k: v for k, v in type2queries.items() if k in self.type2id}
+
+            print("El type2queries, despues.")
+            print(type2queries)
             if split == "train":
                 with open(os.path.join(path, "%s-answers.pkl" % split), "rb") as fin:
                     query2easy_answers = pickle.load(fin)
