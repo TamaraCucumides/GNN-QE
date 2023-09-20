@@ -1,4 +1,4 @@
-output_dir: ~/storage/scratch/experiments/
+output_dir: ~/storage/scratch/experiments/pesos/
 
 dataset:
   class: FB15k237LogicalQuery
