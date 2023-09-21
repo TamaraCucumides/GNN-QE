@@ -18,6 +18,7 @@ def test(cfg, solver):
 
 
 if __name__ == "__main__":
+    torch.cuda.empty_cache()
     args, vars = util.parse_args()
     cfg = util.load_config(args.config, context=vars)
     working_dir = util.create_working_directory(cfg)
