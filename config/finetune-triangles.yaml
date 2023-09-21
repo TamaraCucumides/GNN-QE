@@ -29,12 +29,12 @@ optimizer:
 
 engine:
   gpus: [0]
-  batch_size: 12
+  batch_size: 2
 
 metric: mrr
 
 train:
   num_epoch: 5
-  batch_per_epoch: 1000
+  batch_per_epoch: 400
 
 checkpoint: {{ checkpoint }}
