@@ -31,10 +31,10 @@ optimizer:
 
 engine:
   gpus: {{ gpus }}
-  batch_size: 10
+  batch_size: 6
 
 train:
   num_epoch: 10
-  batch_per_epoch: 2000
+  batch_per_epoch: 3000
 
 metric: mrr
