@@ -1,8 +1,9 @@
-output_dir: ~/scratch/experiments/
+
+output_dir: ~/storage/scratch/experiments/
 
 dataset:
   class: NELL995LogicalQuery
-  path: ~/kg-datasets/
+  path: ~/storage/kg-datasets/
 
 task:
   class: LogicalQuery
