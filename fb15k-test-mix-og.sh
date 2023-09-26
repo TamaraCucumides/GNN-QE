@@ -2,7 +2,7 @@
 #SBATCH --workdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
 #SBATCH --job-name=fb15k-test-sa
-#SBATCH --nodelist=hydra
+#SBATCH --nodelist=grievous
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/%A.log
