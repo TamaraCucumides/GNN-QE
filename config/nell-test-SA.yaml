@@ -1,0 +1,35 @@
+output_dir: ~/storage/scratch/experiments/
+
+dataset:
+  class: NELL995LogicalQuery
+  path: ~/storage/kg-datasets/sin-anchor/
+
+task:
+  class: LogicalQuery
+  model:
+    class: GNN-QE
+    model:
+      class: NBFNet
+      input_dim: 32
+      hidden_dims: [32, 32, 32, 32]
+      message_func: distmult
+      aggregate_func: pna
+      short_cut: yes
+      layer_norm: yes
+      concat_hidden: yes
+      dependent: yes
+    logic: product
+    dropout_ratio: 0.25
+  criterion: bce
+  sample_weight: yes
+  adversarial_temperature: 0.2
+
+optimizer:
+  class: Adam
+  lr: 5.0e-3
+
+engine:
+  gpus: {{ gpus }}
+  batch_size: 6
+
+checkpoint: {{ checkpoint }}
