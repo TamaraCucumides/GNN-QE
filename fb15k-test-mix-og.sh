@@ -6,7 +6,7 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/%A.log
-#SBATCH --gres=gpu:TitanRTX:1
+#SBATCH --gres=gpu:1
 #SBATCH --cpus=4
 #SBATCH --partition=ialab-high
 pwd; hostname; date
@@ -16,4 +16,4 @@ cd /home/tacucumides/
 source miniconda3/etc/profile.d/conda.sh
 conda activate gnn-qe
 cd /home/tacucumides/storage/GNN-QE
-python script/test.py -c config/fb15k-test-og.yaml --checkpoint ../2023-09-23-11-55-04/model_epoch_10.pth --gpus [0] #arreglar checkpoint
+python script/test.py -c config/fb15k-test-og.yaml --checkpoint ../2023-09-25-20-59-06/model_epoch_8.pth --gpus [0]
