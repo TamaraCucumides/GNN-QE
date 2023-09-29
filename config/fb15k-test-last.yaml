@@ -2,7 +2,7 @@ output_dir: ~/storage/scratch/experiments/
 
 dataset:
   class: FB15kLogicalQuery
-  path: ~/storage/kg-datasets/last_tests/
+  path: ~/storage/kg-datasets/last-tests/
 
 task:
   class: LogicalQuery
