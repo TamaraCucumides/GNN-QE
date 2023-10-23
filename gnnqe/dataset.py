@@ -49,7 +49,7 @@ class LogicalQueryDataset(data.KnowledgeGraphDataset):
         (("e", ("r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r")), ("e", ("r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r"))): "14pi",
         (("e", ("r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r")), ("e", ("r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r"))): "15pi",
         (((('e', ('r',)), ('e', ('r',))), ('r',)), ((('e', ('r',)), ('e', ('r',))), ('r',))): "2ip",
-        (((('e', ('r',)), ('e', ('r', 'r'))), ('r',)), ((('e', ('r',)), ('e', ('r', 'r'))), ('r',))): "3ip",
+        (((('e', ('r',)), ('e', ('r', 'r'))), ('r',)), ((('e', ('r',)), ('e', ('r', 'r'))), ('r',))): "3ip"
     }
 
     def load_pickle(self, path, query_types=None, union_type="DNF", verbose=0):
