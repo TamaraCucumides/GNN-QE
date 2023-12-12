@@ -145,6 +145,9 @@ class LogicalQuery(tasks.Task, core.Configurable):
         ranking, num_pred = pred
         type, num_easy, num_hard = target
 
+        print(pred)
+        print(target)
+
         metric = {}
         for _metric in self.metric:
             if _metric == "mrr":
