@@ -151,10 +151,6 @@ def one_hot(index, size):
     return result
 
 def save_to_csv(easy, hard, pred, data_type, folder='data'):
-    print(os.path.abspath(folder))
-    
-    if True:
-        return 
     
     data = {
         'easy': easy.tolist(),
