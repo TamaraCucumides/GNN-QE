@@ -98,9 +98,15 @@ class LogicalQuery(tasks.Task, core.Configurable):
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
 
-        print("type shape")
-        print(type.shape)
-        print(self.id2type)
+        print("Entering for")
+
+        for i in range(type.shape[0]):
+            easy = easy_answer[i, :]
+            hard = hard_answer[i, :]
+            predict = pred[i, :]
+            data_type = id2type[type[int(i)]]
+            save_to_csv(easy, hard, predict, data_type, folder='data')
+
 
         
         if all_loss is None:
