@@ -8,6 +8,8 @@ from torchdrug import core, tasks, metrics
 from torchdrug.layers import functional
 from torchdrug.core import Registry as R
 
+from .util import save_to_csv
+
 
 @R.register("task.LogicalQuery")
 class LogicalQuery(tasks.Task, core.Configurable):
