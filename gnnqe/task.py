@@ -90,7 +90,6 @@ class LogicalQuery(tasks.Task, core.Configurable):
         return all_loss, metric
 
     def predict_and_target(self, batch, all_loss=None, metric=None):
-        print("Entering predict and target")
         query = batch["query"]
         type = batch["type"]
         easy_answer = batch["easy_answer"]
@@ -98,7 +97,6 @@ class LogicalQuery(tasks.Task, core.Configurable):
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
 
-        print("Entering for")
 
         for i in range(type.shape[0]):
             easy = easy_answer[i, :]
