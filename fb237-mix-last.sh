@@ -7,8 +7,8 @@
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/%A.log
 #SBATCH --gres=gpu:TitanRTX:1
-#SBATCH --cpus=4
-#SBATCH --partition=ialab-high
+#SBATCH --cpus=2
+#SBATCH --partition=ialab-low
 
 pwd; hostname; date
 echo "Start"
