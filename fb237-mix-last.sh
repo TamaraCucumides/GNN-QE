@@ -2,13 +2,13 @@
 #SBATCH --workdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
 #SBATCH --job-name=tri-gnn-qe
-#SBATCH --nodelist=ahsoka
+#SBATCH --nodelist=yodaxico
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/%A.log
 #SBATCH --gres=gpu:1
 #SBATCH --cpus=2
-#SBATCH --partition=ialab-low
+#SBATCH --partition=ialab-high
 
 pwd; hostname; date
 echo "Start"
