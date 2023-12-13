@@ -94,7 +94,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
         easy_answer = batch["easy_answer"]
         hard_answer = batch["hard_answer"]
 
-        #print(f"Query is {query} and type is {type}")
+        print(type)
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
 
