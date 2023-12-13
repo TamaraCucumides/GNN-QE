@@ -96,7 +96,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
 
-        print("shape")
+        print("type shape")
         print(type.shape)
 
         
