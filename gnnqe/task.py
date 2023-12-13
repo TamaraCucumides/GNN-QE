@@ -98,6 +98,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
 
         print("type shape")
         print(type.shape)
+        print(self.id2type)
 
         
         if all_loss is None:
