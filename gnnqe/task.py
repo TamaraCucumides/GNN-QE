@@ -88,20 +88,29 @@ class LogicalQuery(tasks.Task, core.Configurable):
         return all_loss, metric
 
     def predict_and_target(self, batch, all_loss=None, metric=None):
-        #print("Entering predict and target")
+        print("Entering predict and target")
         query = batch["query"]
         type = batch["type"]
         easy_answer = batch["easy_answer"]
         hard_answer = batch["hard_answer"]
 
-        #print(f"Query is {query} and type is {type}")
-        #print("All loss is", all_loss)
-        #print("Metric is", metric)
-        #print("Defining model")
+        print(f"Query is {query} and type is {type}")
+        
         pred = self.model(self.fact_graph, query, all_loss, metric)
+
+        print("Pred")
+        print(pred)
+
+        print("easies")
+        print(easy_answer)
+
+        print("hardies")
+        print(hard_answer)
+        
         if all_loss is None:
             target = (type, easy_answer, hard_answer)
             ranking = self.batch_evaluate(pred, target)
+            
             # answer set cardinality prediction
             prob = F.sigmoid(pred)
             num_pred = (prob * (prob > 0.5)).sum(dim=-1)
@@ -144,9 +153,6 @@ class LogicalQuery(tasks.Task, core.Configurable):
     def evaluate(self, pred, target):
         ranking, num_pred = pred
         type, num_easy, num_hard = target
-
-        print(pred)
-        print(target)
 
         metric = {}
         for _metric in self.metric:
