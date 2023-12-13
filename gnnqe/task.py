@@ -104,7 +104,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
             easy = easy_answer[i, :]
             hard = hard_answer[i, :]
             predict = pred[i, :]
-            data_type = id2type[type[int(i)]]
+            data_type = self.id2type[type[int(i)]]
             save_to_csv(easy, hard, predict, data_type, folder='data')
 
 
