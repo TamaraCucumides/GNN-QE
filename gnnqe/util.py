@@ -15,6 +15,9 @@ from torch import distributed as dist
 from torchdrug import core, utils
 from torchdrug.utils import comm
 
+# to store the predictions
+import csv
+
 
 logger = logging.getLogger(__file__)
 
@@ -146,3 +149,27 @@ def one_hot(index, size):
         result[index != 99999] = result_non_9999
         
     return result
+
+def save_to_csv(easy, hard, pred, data_type, folder='data'):
+    data = {
+        'easy': easy.tolist(),
+        'hard': hard.tolist(),
+        'pred': pred.tolist(),
+    }
+
+    try:
+        filename = os.path.join(folder, f'preds_{data_type}.csv')
+        with open(filename, 'a', newline='') as csvfile:
+            fieldnames = ['easy', 'hard', 'pred']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            # If the file is empty, write the header
+            if csvfile.tell() == 0:
+                writer.writeheader()
+
+            # Write the data as a row
+            writer.writerow(data)
+
+    except Exception as e:
+        print(f'Error saving data to {filename}: {e}')
+
