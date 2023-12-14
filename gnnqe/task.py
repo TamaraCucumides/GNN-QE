@@ -97,9 +97,11 @@ class LogicalQuery(tasks.Task, core.Configurable):
         hard_answer = batch["hard_answer"]
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
-        round_pred = np.round(pred.numpy(),3)
 
+        print(pred)
+        round_pred = torch.round(pred, decimals=3)
         print(round_pred)
+
 
 
         for i in range(type.shape[0]):
