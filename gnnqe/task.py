@@ -96,12 +96,13 @@ class LogicalQuery(tasks.Task, core.Configurable):
         hard_answer = batch["hard_answer"]
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
+        round_pred = torch.round(pred * 10000) / 10000
 
 
         for i in range(type.shape[0]):
             easy = easy_answer[i, :].float()
             hard = hard_answer[i, :].float()
-            predict = pred[i, :]
+            predict = round_pred[i, :]
             data_type = self.id2type[type[int(i)]]
             save_to_csv(easy, hard, predict, data_type, folder='data')
 
