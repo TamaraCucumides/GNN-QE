@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 from torch.nn import functional as F
 from torch.utils import data as torch_data
 
@@ -96,7 +97,9 @@ class LogicalQuery(tasks.Task, core.Configurable):
         hard_answer = batch["hard_answer"]
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
-        round_pred = torch.round(pred * 10000) / 10000
+        round_pred = np.round(pred.numpy(),3)
+
+        print(round_pred)
 
 
         for i in range(type.shape[0]):
