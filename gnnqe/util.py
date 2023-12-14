@@ -153,8 +153,8 @@ def one_hot(index, size):
 def save_to_csv(easy, hard, pred, data_type, folder='data'):
     
     data = {
-        'easy': easy.tolist(),
-        'hard': hard.tolist(),
+        'easy': easy,
+        'hard': hard,
         'pred': pred.tolist(),
     }
 
