@@ -99,16 +99,16 @@ class LogicalQuery(tasks.Task, core.Configurable):
         pred = self.model(self.fact_graph, query, all_loss, metric)
         round_pred = torch.round(pred, decimals=5)
 
-
-
-        for i in range(type.shape[0]):
-            easy = easy_answer[i, :].float()
-            easy_idx = [i for i, value in enumerate(easy) if value == 1]
-            hard = hard_answer[i, :].float()
-            hard_idx = [i for i, value in enumerate(hard) if value == 1]
-            predict = round_pred[i, :]
-            data_type = self.id2type[type[int(i)]]
-            save_to_csv(easy_idx, hard_idx, predict, data_type, folder='data')
+        #Save into files
+        if False:
+            for i in range(type.shape[0]):
+                easy = easy_answer[i, :].float()
+                easy_idx = [i for i, value in enumerate(easy) if value == 1]
+                hard = hard_answer[i, :].float()
+                hard_idx = [i for i, value in enumerate(hard) if value == 1]
+                predict = round_pred[i, :]
+                data_type = self.id2type[type[int(i)]]
+                save_to_csv(easy_idx, hard_idx, predict, data_type, folder='data')
 
 
         
