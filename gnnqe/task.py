@@ -160,6 +160,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
         type, num_easy, num_hard = target
 
         metric = {}
+        #TODO: add the new metrics
         for _metric in self.metric:
             if _metric == "mrr":
                 answer_score = 1 / ranking.float()
