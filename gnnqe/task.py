@@ -164,7 +164,11 @@ class LogicalQuery(tasks.Task, core.Configurable):
         type, num_easy, num_hard = target
 
         print("Para ver como llegan las variables al evaluate")
-        print("ranking", ranking)
+        print("largo ranking", ranking.shape)
+        print("num_pred", num_pred)
+        print("prob", prob)
+        print("type", type)
+        print("num easy", num_easy)
 
         metric = {}
         for _metric in self.metric:
