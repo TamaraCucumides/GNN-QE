@@ -177,20 +177,23 @@ class LogicalQuery(tasks.Task, core.Configurable):
             
             elif _metric.startswith("Precision@"):
                 threshold = float(_metric[10:])
-                print("threshold", threshold)
                 predicted_ans = prob > threshold
                 number_predicted = predicted_ans.sum(dim=-1)
-                print("number_predicted", number_predicted)
                 true_positive = (predicted_ans * (torch.logical_or(easy_answer, hard_answer))).sum(dim=-1)
-                print("true_positive", true_positive)
                 query_score = (true_positive / number_predicted).float()
-                print("query_score", query_score)
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
                 
             elif _metric.startswith("Recall@"):
                 threshold = float(_metric[7:])
                 predicted_ans = prob > threshold
+                number_predicted = predicted_ans.sum(dim=-1)
+                all_answers = (torch.logical_or(easy_answer, hard_answer).sum(dim=-1)
+                true_positive = (predicted_ans * (torch.logical_or(easy_answer, hard_answer))).sum(dim=-1)
+                query_score = (true_positive / all_answers).float()
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
+
+
+            
             elif _metric.startswith("Hard-Recall@"):
                 threshold = int(_metric[12:])
                 predicted_ans = prob > threshold
