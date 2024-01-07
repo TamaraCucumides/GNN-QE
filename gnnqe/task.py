@@ -161,12 +161,8 @@ class LogicalQuery(tasks.Task, core.Configurable):
         ranking, num_pred, prob, easy_answer, hard_answer = pred
         type, num_easy, num_hard = target
 
-        print("Para ver como llegan las variables al evaluate")
-        print("largo ranking", ranking.shape)
-        print("num_pred", num_pred)
-        print("prob", prob)
-        print("type", type)
-        print("num easy", num_easy)
+        print(easy_answer)
+        print(hard_answer)
 
         metric = {}
         for _metric in self.metric:
@@ -187,15 +183,16 @@ class LogicalQuery(tasks.Task, core.Configurable):
             
             elif _metric.startswith("Precision@"):
                 threshold = int(_metric[10:])
-                predicted_ans = (prob * (prob > threshold))
+                predicted_ans = prob > threshold
+                
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
             elif _metric.startswith("Recall@"):
                 threshold = float(_metric[7:])
-                predicted_ans = (prob * (prob > threshold))
+                predicted_ans = prob > threshold
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
             elif _metric.startswith("Hard-Recall@"):
                 threshold = int(_metric[12:])
-                predicted_ans = (prob * (prob > threshold))
+                predicted_ans = prob > threshold
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
 
             
