@@ -1,20 +1,20 @@
 #!/bin/bash
 #SBATCH --workdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
-#SBATCH --job-name=gnn-qe
+#SBATCH --job-name=test-gnnqe-og-og
 #SBATCH --nodelist=scylla
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/%A.log
 #SBATCH --gres=gpu:1
-#SBATCH --cpus=8
+#SBATCH --cpus=2
 #SBATCH --partition=ialab-high
 pwd; hostname; date
 echo "Start"
 echo $(pwd)
-cd /home/tacucumides/
+cd /home/tacucumides/storage
 source miniconda3/etc/profile.d/conda.sh
-conda activate gnn-qe
+conda activate nbfnet
 cd /home/tacucumides/storage/GNN-QE
 python script/test.py -c config/test.yaml --checkpoint ../2023-08-30-00-32-39/model_epoch_10.pth --gpus [0]
 
