@@ -167,12 +167,8 @@ class LogicalQuery(tasks.Task, core.Configurable):
         metric = {}
         for _metric in self.metric:
             if _metric == "mrr":
-                print("MRR")
                 answer_score = 1 / ranking.float()
-                print(answer_score)
-                print(len(answer_score))
                 query_score = functional.variadic_mean(answer_score, num_hard)
-                print(query_score)
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
             elif _metric.startswith("hits@"):
                 threshold = int(_metric[5:])
@@ -184,8 +180,11 @@ class LogicalQuery(tasks.Task, core.Configurable):
             elif _metric.startswith("Precision@"):
                 threshold = int(_metric[10:])
                 predicted_ans = prob > threshold
-                
+                number_predicted = predicted_ans.sum(dim=-1)
+                true_positive = (predicted_ans * (torch.logical_or(easy_answer, hard_answer))).sum(dim=-1)
+                query_score = (true_positive / number_predicted).float()
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
+                
             elif _metric.startswith("Recall@"):
                 threshold = float(_metric[7:])
                 predicted_ans = prob > threshold
