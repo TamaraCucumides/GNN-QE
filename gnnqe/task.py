@@ -178,7 +178,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
 
             
             elif _metric.startswith("Precision@"):
-                threshold = int(_metric[10:])
+                threshold = float(_metric[10:])
                 predicted_ans = prob > threshold
                 number_predicted = predicted_ans.sum(dim=-1)
                 true_positive = (predicted_ans * (torch.logical_or(easy_answer, hard_answer))).sum(dim=-1)
