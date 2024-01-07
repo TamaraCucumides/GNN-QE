@@ -13,7 +13,7 @@ from gnnqe import dataset, gnn, model, task, util
 
 def test(cfg, solver):
     solver.model.metric = ("mrr", "hits@1", "mape", "spearmanr")
-    solver.model.metric = ("mrr", "hits@1", "mape", "spearmanr", "Precision@0.5")
+    #solver.model.metric = ("mrr", "hits@1", "mape", "spearmanr", "Precision@0.5")
     #solver.evaluate("valid") only evaluate on test?
     solver.evaluate("test")
 
