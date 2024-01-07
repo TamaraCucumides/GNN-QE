@@ -97,7 +97,6 @@ class LogicalQuery(tasks.Task, core.Configurable):
         hard_answer = batch["hard_answer"]
         
         pred = self.model(self.fact_graph, query, all_loss, metric)
-        round_pred = torch.round(pred, decimals=5)
 
         #Save into files
         if False:
@@ -109,19 +108,19 @@ class LogicalQuery(tasks.Task, core.Configurable):
                 predict = round_pred[i, :]
                 data_type = self.id2type[type[int(i)]]
                 save_to_csv(easy_idx, hard_idx, predict, data_type, folder='data')
-
-
         
         if all_loss is None:
             target = (type, easy_answer, hard_answer)
             ranking = self.batch_evaluate(pred, target)
-            
             # answer set cardinality prediction
             prob = F.sigmoid(pred)
             num_pred = (prob * (prob > 0.5)).sum(dim=-1)
             num_easy = easy_answer.sum(dim=-1)
             num_hard = hard_answer.sum(dim=-1)
-            return (ranking, num_pred), (type, num_easy, num_hard)
+            # precision and recall
+            easy_idx = None
+            hard_idx = None
+            return (ranking, num_pred, prob), (type, num_easy, num_hard)
         else:
             target = easy_answer.float()
 
@@ -156,11 +155,18 @@ class LogicalQuery(tasks.Task, core.Configurable):
         return ranking
 
     def evaluate(self, pred, target):
-        ranking, num_pred = pred
+        # ranking = ranking de las hard answers
+        # num_pred = entities above 0.5
+        # type = type of the query
+        # num_easy = total easy answers for each query
+        # num_hard = total hard answers for each query
+        ranking, num_pred, prob = pred
         type, num_easy, num_hard = target
 
+        print("Para ver como llegan las variables al evaluate")
+        print("ranking", ranking)
+
         metric = {}
-        #TODO: add the new metrics
         for _metric in self.metric:
             if _metric == "mrr":
                 answer_score = 1 / ranking.float()
@@ -171,6 +177,22 @@ class LogicalQuery(tasks.Task, core.Configurable):
                 answer_score = (ranking <= threshold).float()
                 query_score = functional.variadic_mean(answer_score, num_hard)
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
+
+            
+            elif _metric.startswith("Precision@"):
+                threshold = int(_metric[10:])
+                predicted_ans = (prob * (prob > threshold))
+                type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
+            elif _metric.startswith("Recall@"):
+                threshold = float(_metric[7:])
+                predicted_ans = (prob * (prob > threshold))
+                type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
+            elif _metric.startswith("Hard-Recall@"):
+                threshold = int(_metric[12:])
+                predicted_ans = (prob * (prob > threshold))
+                type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
+
+            
             elif _metric == "mape":
                 query_score = (num_pred - num_easy - num_hard).abs() / (num_easy + num_hard).float()
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
