@@ -171,8 +171,12 @@ class LogicalQuery(tasks.Task, core.Configurable):
         metric = {}
         for _metric in self.metric:
             if _metric == "mrr":
+                print("MRR")
                 answer_score = 1 / ranking.float()
+                print(answer_score)
+                print(len(answer_score))
                 query_score = functional.variadic_mean(answer_score, num_hard)
+                print(query_score)
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
             elif _metric.startswith("hits@"):
                 threshold = int(_metric[5:])
