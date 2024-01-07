@@ -118,9 +118,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
             num_easy = easy_answer.sum(dim=-1)
             num_hard = hard_answer.sum(dim=-1)
             # precision and recall
-            easy_idx = None
-            hard_idx = None
-            return (ranking, num_pred, prob), (type, num_easy, num_hard)
+            return (ranking, num_pred, prob, easy_answer, hard_answer), (type, num_easy, num_hard)
         else:
             target = easy_answer.float()
 
@@ -160,7 +158,7 @@ class LogicalQuery(tasks.Task, core.Configurable):
         # type = type of the query
         # num_easy = total easy answers for each query
         # num_hard = total hard answers for each query
-        ranking, num_pred, prob = pred
+        ranking, num_pred, prob, easy_answer, hard_answer = pred
         type, num_easy, num_hard = target
 
         print("Para ver como llegan las variables al evaluate")
