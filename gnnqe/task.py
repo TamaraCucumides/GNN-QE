@@ -193,10 +193,13 @@ class LogicalQuery(tasks.Task, core.Configurable):
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
 
 
-            
             elif _metric.startswith("Hard-Recall@"):
-                threshold = int(_metric[12:])
+                threshold = float(_metric[12:])
                 predicted_ans = prob > threshold
+                number_predicted = predicted_ans.sum(dim=-1)
+                true_positive_hard = (predicted_ans * hard_answer).sum(dim=-1)
+                num_hards = hard_answer.sum(dim=-1)
+                query_score = (true_positive_hard / num_hards).float()
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
 
             
