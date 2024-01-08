@@ -181,6 +181,8 @@ class LogicalQuery(tasks.Task, core.Configurable):
                 number_predicted = predicted_ans.sum(dim=-1)
                 true_positive = (predicted_ans * (torch.logical_or(easy_answer, hard_answer))).sum(dim=-1)
                 query_score = (true_positive / number_predicted).float()
+                nan_mask = torch.isnan(query_score)
+                query_score = torch.where(nan_mask, torch.tensor(0.0), query_score)
                 type_score = scatter_mean(query_score, type, dim_size=len(self.id2type))
                 
             elif _metric.startswith("Recall@"):
