@@ -18,7 +18,7 @@ task:
       layer_norm: yes
       dependent: yes
     logic: product
-    dropout_ratio: 0.375
+    dropout_ratio: 0.5
   criterion: bce
   sample_weight: no
   adversarial_temperature: 0.2
