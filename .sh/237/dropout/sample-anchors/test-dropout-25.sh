@@ -16,4 +16,4 @@ cd /home/tacucumides/storage
 source miniconda3/etc/profile.d/conda.sh
 conda activate nbfnet
 cd /home/tacucumides/storage/GNN-QE
-python script/test.py -c config/fb237-100.yaml --checkpoint ../2024-01-10-10-24-43/model_epoch_10.pth --gpus [0]
+python script/test.py -c config/fb237-100.yaml --checkpoint ../2024-01-22-22-01-16/model_epoch_10.pth --gpus [0]
