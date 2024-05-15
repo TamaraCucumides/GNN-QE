@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --workdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
-#SBATCH --job-name=gnnqe-nips-triangle
+#SBATCH --job-name=gnnqe-nips-square
 #SBATCH --nodelist=scylla
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
