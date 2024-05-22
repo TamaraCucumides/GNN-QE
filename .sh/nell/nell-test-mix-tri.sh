@@ -14,6 +14,6 @@ echo "Start"
 echo $(pwd)
 cd /home/tacucumides/
 source miniconda3/etc/profile.d/conda.sh
-conda activate gnn-qe
+conda activate nbfnet
 cd /home/tacucumides/storage/GNN-QE
 python script/test.py -c config/nell-test-tri.yaml --checkpoint ../2023-09-26-22-59-00/model_epoch_8.pth --gpus [0]
