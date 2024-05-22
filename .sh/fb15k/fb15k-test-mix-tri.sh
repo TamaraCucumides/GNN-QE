@@ -12,8 +12,8 @@
 pwd; hostname; date
 echo "Start"
 echo $(pwd)
-cd /home/tacucumides/
+cd /home/tacucumides/storage
 source miniconda3/etc/profile.d/conda.sh
-conda activate gnn-qe
+conda activate nbfnet
 cd /home/tacucumides/storage/GNN-QE
 python script/test.py -c config/fb15k-test-tri.yaml --checkpoint ../2023-09-25-20-59-06/model_epoch_8.pth --gpus [0]
