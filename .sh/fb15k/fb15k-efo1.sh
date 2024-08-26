@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --workdir=/home/tacucumides/storage
+#SBATCH --chdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
 #SBATCH --job-name=gnnqe-nips-square
 #SBATCH --nodelist=hydra
