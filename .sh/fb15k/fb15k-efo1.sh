@@ -2,7 +2,7 @@
 #SBATCH --chdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
 #SBATCH --job-name=gnnqe-nips-square
-#SBATCH --nodelist=ahsoka
+#SBATCH --nodelist=scylla
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/efo1/%A.log
