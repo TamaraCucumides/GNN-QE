@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --workdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
-#SBATCH --job-name=fb15k-test-efo1
-#SBATCH --nodelist=yodaxico
+#SBATCH --job-name=gnnqe-nips-square
+#SBATCH --nodelist=hydra
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
 #SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/efo1/%A.log
 #SBATCH --gres=gpu:1
-#SBATCH --cpus=1
+#SBATCH --cpus=2
 #SBATCH --partition=ialab-high
 pwd; hostname; date
 echo "Start"
