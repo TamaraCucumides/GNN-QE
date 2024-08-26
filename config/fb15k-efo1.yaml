@@ -1,4 +1,4 @@
-output_dir: ~/storage/scratch/experiments/efo1/
+output_dir: ~/storage/scratch/experiments/
 
 dataset:
   class: FB15kLogicalQuery
