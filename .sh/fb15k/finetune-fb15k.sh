@@ -17,4 +17,4 @@ source miniconda3/etc/profile.d/conda.sh
 conda activate nbfnet
 cd /home/tacucumides/storage/GNN-QE
 
-python script/run.py -c config/fb15k-finetune.yaml --gpus [0] --checkpoint ../2023-09-25-20-59-06/model_epoch_8.pth
+python script/run.py -c config/fb15k-finetune.yaml --gpus [0] --checkpoint ../2023-09-25-20-59-06/model_epoch_9.pth
