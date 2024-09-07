@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --workdir=/home/tacucumides/storage
+#SBATCH --chdir=/home/tacucumides/storage
 #SBATCH --ntasks=1
-#SBATCH --job-name=train-unr-fb15k
-#SBATCH --nodelist=hydra
+#SBATCH --job-name=gnnqe-log-efo1
+#SBATCH --nodelist=yodaxico
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=tacucumides@uc.cl
-#SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/fb15k/%A.log
-#SBATCH --gres=gpu:TitanRTX:1
-#SBATCH --cpus=8
+#SBATCH --output=/home/tacucumides/storage/GNN-QE/logs/experiments/efo1/%A.log
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-gpu=2
 #SBATCH --partition=ialab-high
 pwd; hostname; date
 echo "Start"
